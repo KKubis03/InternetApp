@@ -1,0 +1,44 @@
+﻿@{
+	ViewData["Title"] = "Login";
+}
+<div class="login container-fluid">
+	<div class="grid">
+		<div class="row">
+			<div class="cell-lg" style="margin-right: 50px;">
+				<img src="\Resources\Images\OZELOGO.png" style="width: 350px;"></img>
+			</div>
+			<div class="cell">
+				<h2 style="font-weight: bold; color: #00ADB5; text-align: center; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">Sign up</h2>
+				<form>
+					<div class="form-group">
+						<label class="label-input" style="color: #00ADB5; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">Email</label>
+						<input type="email" placeholder="Enter email"
+							   data-informer="Enter a valid email address"
+							   data-role="materialinput" data-cls-line="bg-custom"
+							   data-cls-informer="fg-custom" />
+					</div>
+					<div class="form-group">
+						<label class="label-input" style="color: #00ADB5;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">Password</label>
+						<input type="password" placeholder="Enter password" data-role="materialinput"
+							   data-informer="Enter a valid password"
+							   data-cls-line="bg-custom"
+							   data-cls-informer="fg-custom" />
+					</div>
+					<div class="form-group">
+						<label class="label-input" style="color: #00ADB5;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">Confirm password</label>
+						<input type="password" placeholder="Confirm password" data-role="materialinput"
+							   data-informer="Confirm password"
+							   data-cls-line="bg-custom"
+							   data-cls-informer="fg-custom" />
+					</div>
+					<div class="form-group">
+						<button class="button info rounded " style="background-color: #00ADB5">Sign up</button>
+						<input type="button" class="button rounded" value="Cancel">
+					</div>
+					<p class="text-secondary">If you already have an account, <a asp-action="Login" style="color: #00ADB5">Log in</a></p>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
