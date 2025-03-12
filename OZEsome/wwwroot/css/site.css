@@ -31,10 +31,13 @@ body {
     min-height: 100vh;
     gap: 200px;
 }
-
+.bold {
+    font-weight: bold;
+}
 .label-input {
     font-size: 20px;
     font-family: Arial;
+    font-weight: bold;
 }
 input {
     padding: 10px;
@@ -42,15 +45,57 @@ input {
 .bg-custom {
     background-color: #00ADB5 !important;
 }
+.bg-custom2 {
+    background-color: #19884d !important;
+}
+.bg-custom3 {
+    background-color: #706ebc !important;
+}
 
 .fg-custom {
     color: #00ADB5 !important;
+}
+.fg-custom2 {
+    color: #19884d !important;
+}
+.fg-custom3 {
+    color: #706ebc !important;
 }
 
 .bd-custom {
     border-color: #00ADB5 !important;
 }
-
 .myCheck::before {
     border-color: #00ADB5 !important;
+}
+.bd-custom2 {
+    border-color: #19884d !important;
+}
+.myCheck2::before {
+    border-color: #19884d !important;
+}
+.container-home {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 10px;
+}
+.tile-custom {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    padding: 30px;
+}
+a {
+    color: White;
+    font-family: Arial;
+    text-decoration: none;
 }
