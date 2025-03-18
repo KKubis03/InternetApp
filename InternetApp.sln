@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OZEsome", "OZEsome\OZEsome.csproj", "{E2A67A25-AAE8-416F-903A-CDDFD26FA8BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OzeSomeAPI", "OzeSomeAPI\OzeSomeAPI.csproj", "{C76F183D-2F64-4535-BCAA-3E6F8150665B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{E2A67A25-AAE8-416F-903A-CDDFD26FA8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2A67A25-AAE8-416F-903A-CDDFD26FA8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2A67A25-AAE8-416F-903A-CDDFD26FA8BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C76F183D-2F64-4535-BCAA-3E6F8150665B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76F183D-2F64-4535-BCAA-3E6F8150665B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C76F183D-2F64-4535-BCAA-3E6F8150665B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76F183D-2F64-4535-BCAA-3E6F8150665B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
