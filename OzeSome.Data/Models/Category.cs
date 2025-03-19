@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
-namespace OzeSomeAPI.Models;
+namespace OzeSome.Data.Models;
 
-public partial class Document
+public partial class Category
 {
     [Key]
     public int Id { get; set; }
 
-    [StringLength(255)]
-    public string FileName { get; set; } = null!;
-
-    [StringLength(500)]
-    public string FilePath { get; set; } = null!;
+    [StringLength(60)]
+    public string CategoryName { get; set; } = null!;
 
     [Column(TypeName = "datetime")]
     public DateTime CreationDateTime { get; set; }
@@ -27,4 +21,7 @@ public partial class Document
     public DateTime? DeleteDateTime { get; set; }
 
     public bool IsActive { get; set; }
+
+    [InverseProperty("Category")]
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

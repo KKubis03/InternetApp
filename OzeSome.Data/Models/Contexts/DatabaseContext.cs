@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using OzeSomeAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace OzeSomeAPI.Models.Contexts;
+namespace OzeSome.Data.Models.Contexts;
 
 public partial class DatabaseContext : DbContext
 {

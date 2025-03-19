@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OzeSomeAPI.Models;
-using OzeSomeAPI.Models.Contexts;
+using OzeSome.Data.Models;
+using OzeSome.Data.Models.Contexts;
 
 namespace OzeSomeAPI.Controllers
 {

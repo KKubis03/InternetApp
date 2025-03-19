@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OZEsome", "OZEsome\OZEsome.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OzeSomeAPI", "OzeSomeAPI\OzeSomeAPI.csproj", "{C76F183D-2F64-4535-BCAA-3E6F8150665B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OzeSome.Data", "OzeSome.Data\OzeSome.Data.csproj", "{22B7CD92-4F98-47E6-B64D-A35DA3050AF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C76F183D-2F64-4535-BCAA-3E6F8150665B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C76F183D-2F64-4535-BCAA-3E6F8150665B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C76F183D-2F64-4535-BCAA-3E6F8150665B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22B7CD92-4F98-47E6-B64D-A35DA3050AF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22B7CD92-4F98-47E6-B64D-A35DA3050AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22B7CD92-4F98-47E6-B64D-A35DA3050AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22B7CD92-4F98-47E6-B64D-A35DA3050AF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

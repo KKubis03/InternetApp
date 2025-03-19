@@ -19,5 +19,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.14" />
   </ItemGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="..\OzeSome.Data\OzeSome.Data.csproj" />
+		<ProjectReference Include="..\OZEsomeAPI\OZEsomeAPI.csproj" />
+	</ItemGroup>
 </Project>

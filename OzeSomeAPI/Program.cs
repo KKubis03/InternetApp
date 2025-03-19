@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
-using OzeSomeAPI.Models.Contexts;
+using OZEsome.Data.Contexts;
+using OzeSome.Data.Models.Contexts;
 
 namespace OzeSomeAPI
 {

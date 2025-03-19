@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using OzeSome.Data.Models.Contexts;
+using OzeSomeAPI.Models.Contexts;
+
 namespace OZEsome
 {
     public class Program
@@ -10,7 +14,10 @@ namespace OZEsome
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
-
+            builder.Services.AddDbContext<DatabaseContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseContext"));
+            });
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
