@@ -19,7 +19,12 @@ namespace OzeSomeAPI
                 .ForMember(c => c.Address, i => i.MapFrom(dto => 
                 new Address() { City = dto.City, Code = dto.Code, Street = dto.Street, Country = dto.Country, 
                     Number = dto.Number, CreationDateTime = DateTime.UtcNow, EditDateTime = DateTime.UtcNow, IsActive = true }));
-            // XXX Mapping
+            // Address Mapping
+            CreateMap<Address, AddressDto>();
+            CreateMap<AddressDto, Address>();
+            // Category Mapping
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDto, Category>();
         }
     }
 }

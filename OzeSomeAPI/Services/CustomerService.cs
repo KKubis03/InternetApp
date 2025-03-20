@@ -30,6 +30,7 @@ namespace OzeSomeAPI.Services
                 return false;
             }
             customer.IsActive = false;
+            customer.DeleteDateTime = DateTime.UtcNow;
             await _context.SaveChangesAsync();
             return true;
         }

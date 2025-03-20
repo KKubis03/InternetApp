@@ -64,7 +64,7 @@ namespace OzeSomeAPI.Controllers
 
         // POST: api/Customers
         [HttpPost]
-        public async Task<ActionResult<Customer>> PostCustomer(CustomerDto customerDto)
+        public async Task<ActionResult<CustomerDto>> PostCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
