@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using OzeSome.Data.Models.Contexts;
-using OzeSomeAPI.Models.Contexts;
 
 namespace OZEsome
 {
@@ -13,11 +12,11 @@ namespace OZEsome
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
             builder.Services.AddDbContext<DatabaseContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseContext"));
             });
+            var app = builder.Build();
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -36,6 +35,9 @@ namespace OZEsome
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Customer}/{action=Index}/{id?}");
 
             app.Run();
         }

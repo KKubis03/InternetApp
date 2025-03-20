@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace OzeSome.Data.Models;
 
@@ -15,6 +16,7 @@ public partial class Customer
     public string LastName { get; set; } = null!;
 
     [StringLength(20)]
+    [MaxLength(20)]
     public string PhoneNumber { get; set; } = null!;
 
     [StringLength(60)]
@@ -38,11 +40,14 @@ public partial class Customer
     public virtual Address? Address { get; set; }
 
     [InverseProperty("Customer")]
+    [JsonIgnore]
     public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 
     [InverseProperty("Customer")]
+    [JsonIgnore]
     public virtual ICollection<Meeting> Meetings { get; set; } = new List<Meeting>();
 
     [InverseProperty("Customer")]
+    [JsonIgnore]
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using OzeSomeAPI.Models;
+using System.Text.Json.Serialization;
 
 namespace OzeSome.Data.Models;
 
@@ -25,7 +25,7 @@ public partial class Address
     public string Country { get; set; } = null!;
 
     [Column(TypeName = "datetime")]
-    public DateTime CreationDateTime { get; set; }
+    public DateTime CreationDateTime { get; set; } = DateTime.UtcNow;
 
     [Column(TypeName = "datetime")]
     public DateTime? EditDateTime { get; set; }
@@ -36,5 +36,6 @@ public partial class Address
     public bool IsActive { get; set; }
 
     [InverseProperty("Address")]
+    [JsonIgnore]
     public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
 }

@@ -1,7 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
-using OZEsome.Data.Contexts;
 using OzeSome.Data.Models.Contexts;
+using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI
 {
@@ -20,7 +20,8 @@ namespace OzeSomeAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+            builder.Services.AddScoped<CustomerService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
