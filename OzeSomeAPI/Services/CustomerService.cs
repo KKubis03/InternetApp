@@ -44,7 +44,7 @@ namespace OzeSomeAPI.Services
 
         public override async Task<CustomerDto> GetByIdAsync(int id)
         {
-            var customer = await _context.Customers.Include(c => c.Address).FirstOrDefaultAsync(c => c.Id == id);
+            var customer = await _context.Customers.Include(c => c.Address).FirstOrDefaultAsync(c => c.Id == id && c.IsActive == true);
             return _mapper.Map<CustomerDto>(customer);
         }
 
@@ -54,6 +54,7 @@ namespace OzeSomeAPI.Services
             if (customer != null)
             {
                 _mapper.Map(dto, customer);
+                customer.EditDateTime = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
             }
             return customer;

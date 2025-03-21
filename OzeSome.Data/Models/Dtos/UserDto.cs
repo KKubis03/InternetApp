@@ -11,11 +11,11 @@ namespace OzeSome.Data.Models.Dtos
     public class UserDto
     {
         public int Id { get; set; }
-        public string UserFirstName { get; set; } = null!;
-        public string UserLastName { get; set; } = null!;
-        public string UserPosition { get; set; } = null!;
-        public string UserEmail { get; set; } = null!;
-        public string UserPhoneNumber { get; set; } = null!;
-        public string UserQrcode { get; set; } = null!;
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
+        public string Position { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
+        public string Qrcode { get; set; } = null!;
     }
 }

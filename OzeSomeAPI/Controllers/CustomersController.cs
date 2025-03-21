@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OzeSome.Data.Models;
-using OzeSome.Data.Models.Contexts;
+﻿using Microsoft.AspNetCore.Mvc;
 using OzeSome.Data.Models.Dtos;
 using OzeSomeAPI.Services;
 

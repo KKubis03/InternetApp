@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OzeSome.Data.Models;
-using OzeSome.Data.Models.Contexts;
+using OzeSome.Data.Models.Dtos;
+using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
 {
@@ -9,95 +8,83 @@ namespace OzeSomeAPI.Controllers
     [ApiController]
     public class NotesController : ControllerBase
     {
-        private readonly DatabaseContext _context;
-
-        public NotesController(DatabaseContext context)
+        private readonly NoteService _noteService;
+        public NotesController(NoteService noteService)
         {
-            _context = context;
+            _noteService = noteService;
         }
 
         // GET: api/Notes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Note>>> GetNotes()
+        public async Task<ActionResult<IEnumerable<NoteDto>>> GetNotes()
         {
-            return await _context.Notes.ToListAsync();
+            var notesDto = await _noteService.GetAllAsync();
+            return Ok(notesDto);
         }
 
         // GET: api/Notes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Note>> GetNote(int id)
+        public async Task<ActionResult<NoteDto>> GetNote(int id)
         {
-            var note = await _context.Notes.FindAsync(id);
-
-            if (note == null)
+            var noteDto = await _noteService.GetByIdAsync(id);
+            if (noteDto == null)
             {
                 return NotFound();
             }
-
-            return note;
+            return Ok(noteDto);
         }
 
         // PUT: api/Notes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutNote(int id, Note note)
+        public async Task<IActionResult> PutNote(int id, NoteDto noteDto)
         {
-            if (id != note.Id)
+            if(id != noteDto.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(note).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!NoteExists(id))
+                var updatedNote = await _noteService.UpdateAsync(noteDto);
+                if (updatedNote == null)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
             }
-
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             return NoContent();
         }
 
         // POST: api/Notes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Note>> PostNote(Note note)
+        public async Task<ActionResult<NoteDto>> PostNote(NoteDto noteDto)
         {
-            _context.Notes.Add(note);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetNote", new { id = note.Id }, note);
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var noteDtoCreated = await _noteService.CreateAsync(noteDto);
+            if (noteDtoCreated == null)
+            {
+                return BadRequest(ModelState);
+            }
+            return CreatedAtAction("GetNote", new { id = noteDtoCreated.Id }, noteDtoCreated);
         }
 
         // DELETE: api/Notes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteNote(int id)
         {
-            var note = await _context.Notes.FindAsync(id);
-            if (note == null)
+            var result = await _noteService.DeleteAsync(id);
+            if (!result)
             {
                 return NotFound();
             }
-
-            _context.Notes.Remove(note);
-            await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool NoteExists(int id)
-        {
-            return _context.Notes.Any(e => e.Id == id);
         }
     }
 }

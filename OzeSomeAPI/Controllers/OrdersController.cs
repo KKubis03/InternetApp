@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OzeSome.Data.Models;
-using OzeSome.Data.Models.Contexts;
+using OzeSome.Data.Models.Dtos;
+using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
 {
@@ -9,95 +8,83 @@ namespace OzeSomeAPI.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly DatabaseContext _context;
-
-        public OrdersController(DatabaseContext context)
+        private readonly OrderService _orderService;
+        public OrdersController(OrderService orderService)
         {
-            _context = context;
+            _orderService = orderService;
         }
 
         // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            var ordersDto = await _orderService.GetAllAsync();
+            return Ok(ordersDto);
         }
 
         // GET: api/Orders/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public async Task<ActionResult<OrderDto>> GetOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
-
-            if (order == null)
+            var orderDto = await _orderService.GetByIdAsync(id);
+            if (orderDto == null)
             {
                 return NotFound();
             }
-
-            return order;
+            return Ok(orderDto);
         }
 
         // PUT: api/Orders/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+        public async Task<IActionResult> PutOrder(int id, OrderDto orderDto)
         {
-            if (id != order.Id)
+            if(id != orderDto.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(order).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OrderExists(id))
+                var updatedOrder = await _orderService.UpdateAsync(orderDto);
+                if (updatedOrder == null)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
             }
-
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             return NoContent();
         }
 
         // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<OrderDto>> PostOrder(OrderDto orderDto)
         {
-            _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetOrder", new { id = order.Id }, order);
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var orderDtoCreated = await _orderService.CreateAsync(orderDto);
+            if(orderDtoCreated == null)
+            {
+                return BadRequest("Nie udało się stworzyć zamówienia");
+            }
+            return CreatedAtAction("GetOrder", new { id = orderDtoCreated.Id }, orderDtoCreated);
         }
 
         // DELETE: api/Orders/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
-            if (order == null)
+            var result = await _orderService.DeleteAsync(id);
+            if (!result)
             {
                 return NotFound();
             }
-
-            _context.Orders.Remove(order);
-            await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool OrderExists(int id)
-        {
-            return _context.Orders.Any(e => e.Id == id);
         }
     }
 }

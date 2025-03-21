@@ -44,7 +44,7 @@ namespace OzeSomeAPI.Services
 
         public override async Task<AddressDto> GetByIdAsync(int id)
         {
-            var address = await _context.Addresses.FirstOrDefaultAsync(a => a.Id == id);
+            var address = await _context.Addresses.FirstOrDefaultAsync(a => a.Id == id && a.IsActive == true);
             return _mapper.Map<AddressDto>(address);
         }
 
@@ -54,6 +54,7 @@ namespace OzeSomeAPI.Services
             if (address != null)
             {
                 _mapper.Map(dto, address);
+                address.EditDateTime = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
             }
             return address;

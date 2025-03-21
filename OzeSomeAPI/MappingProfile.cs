@@ -18,13 +18,25 @@ namespace OzeSomeAPI
             CreateMap<CustomerDto, Customer>()
                 .ForMember(c => c.Address, i => i.MapFrom(dto => 
                 new Address() { City = dto.City, Code = dto.Code, Street = dto.Street, Country = dto.Country, 
-                    Number = dto.Number, CreationDateTime = DateTime.UtcNow, EditDateTime = DateTime.UtcNow, IsActive = true }));
+                    Number = dto.Number, CreationDateTime = DateTime.UtcNow, IsActive = true }));
             // Address Mapping
             CreateMap<Address, AddressDto>();
             CreateMap<AddressDto, Address>();
             // Category Mapping
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();
+            // Note Mapping
+            CreateMap<Note, NoteDto>();
+            CreateMap<NoteDto, Note>();
+            // Order Mapping
+            CreateMap<Order, OrderDto>();
+            CreateMap<OrderDto, Order>();
+            // Product Mapping
+            CreateMap<Product, ProductDto>();
+            CreateMap<ProductDto, Product>();
+            // User Mapping
+            CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
         }
     }
 }
