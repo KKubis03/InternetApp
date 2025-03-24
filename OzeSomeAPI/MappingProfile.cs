@@ -37,6 +37,16 @@ namespace OzeSomeAPI
             // User Mapping
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
+            // OrderDetail Mapping
+            CreateMap<OrderDetail, OrderDetailsDto>()
+                .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.Order.OrderDate))
+                .ForMember(dest => dest.OrderStatus, opt => opt.MapFrom(src => src.Order.OrderStatus))
+                .ForMember(dest => dest.CustomerFirstName, opt => opt.MapFrom(src => src.Customer.FirstName))
+                .ForMember(dest => dest.CustomerLastName, opt => opt.MapFrom(src => src.Customer.LastName))
+                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.ProductName))
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Product.Category.CategoryName))
+                .ForMember(dest => dest.ProductPrice, opt => opt.MapFrom(src => src.Product.Price));
+            CreateMap<OrderDetailsDto, OrderDetail>();
         }
     }
 }

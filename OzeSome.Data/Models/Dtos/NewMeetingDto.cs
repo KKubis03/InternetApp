@@ -1,11 +1,9 @@
 ﻿namespace OzeSome.Data.Models.Dtos
 {
-    public class MeetingDto
+    public class NewMeetingDto
     {
         public int Id { get; set; }
-        // Customer Data
-        public string CustomerFirstName { get; set; } = null!;
-        public string CustomerLastName { get; set; } = null!;
+        public int CustomerId { get; set; }
         public DateTime MeetingDate { get; set; }
         public string MeetingStatus { get; set; } = null!;
     }

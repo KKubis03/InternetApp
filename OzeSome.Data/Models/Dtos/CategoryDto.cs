@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OzeSome.Data.Models.Dtos
+﻿namespace OzeSome.Data.Models.Dtos
 {
     public class CategoryDto
     {
