@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OzeSome.Data.Models;
-using OzeSome.Data.Models.Contexts;
+using OzeSome.Data.Models.Dtos;
+using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
 {
@@ -9,95 +8,84 @@ namespace OzeSomeAPI.Controllers
     [ApiController]
     public class ContractsController : ControllerBase
     {
-        private readonly DatabaseContext _context;
+        private readonly ContractService _contractService;
 
-        public ContractsController(DatabaseContext context)
+        public ContractsController(ContractService contractService)
         {
-            _context = context;
+            _contractService = contractService;
         }
 
         // GET: api/Contracts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Contract>>> GetContracts()
+        public async Task<ActionResult<IEnumerable<ContractDto>>> GetContracts()
         {
-            return await _context.Contracts.ToListAsync();
+            var contractsDto = await _contractService.GetAllAsync();
+            return Ok(contractsDto);
         }
 
         // GET: api/Contracts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Contract>> GetContract(Guid id)
+        public async Task<ActionResult<ContractDto>> GetContract(Guid id)
         {
-            var contract = await _context.Contracts.FindAsync(id);
-
-            if (contract == null)
+            var contractDto = await _contractService.GetByIdAsync(id);
+            if (contractDto == null)
             {
                 return NotFound();
             }
-
-            return contract;
+            return Ok(contractDto);
         }
 
         // PUT: api/Contracts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutContract(Guid id, Contract contract)
+        public async Task<IActionResult> PutContract(Guid id, ContractDto contract)
         {
             if (id != contract.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(contract).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ContractExists(id))
+                var updatedContract = await _contractService.UpdateAsync(contract);
+                if (updatedContract == null)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
             }
-
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             return NoContent();
         }
 
         // POST: api/Contracts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Contract>> PostContract(Contract contract)
+        public async Task<ActionResult<ContractDto>> PostContract(ContractDto contract)
         {
-            _context.Contracts.Add(contract);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetContract", new { id = contract.Id }, contract);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var createdContract = await _contractService.CreateAsync(contract);
+            if (createdContract == null)
+            {
+                return StatusCode(500, "Error creating contract");
+            }
+            return CreatedAtAction("GetContract", new { id = createdContract.Id }, createdContract);
         }
 
         // DELETE: api/Contracts/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteContract(Guid id)
         {
-            var contract = await _context.Contracts.FindAsync(id);
-            if (contract == null)
+            var deletedContract = await _contractService.DeleteAsync(id);
+            if (deletedContract == null)
             {
                 return NotFound();
             }
-
-            _context.Contracts.Remove(contract);
-            await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool ContractExists(Guid id)
-        {
-            return _context.Contracts.Any(e => e.Id == id);
         }
     }
 }

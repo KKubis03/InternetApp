@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using OzeSome.Data.Models;
 using OzeSome.Data.Models.Contexts;
+using OzeSome.Data.Models.Dtos;
+using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
 {
@@ -9,95 +11,84 @@ namespace OzeSomeAPI.Controllers
     [ApiController]
     public class DocumentsController : ControllerBase
     {
-        private readonly DatabaseContext _context;
+        private readonly DocumentService _documentService;
 
-        public DocumentsController(DatabaseContext context)
+        public DocumentsController(DocumentService documentService)
         {
-            _context = context;
+            _documentService = documentService;
         }
 
         // GET: api/Documents
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Document>>> GetDocuments()
+        public async Task<ActionResult<IEnumerable<DocumentDto>>> GetDocuments()
         {
-            return await _context.Documents.ToListAsync();
+            var documentsDto = await _documentService.GetAllAsync();
+            return Ok(documentsDto);
         }
 
         // GET: api/Documents/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Document>> GetDocument(Guid id)
+        public async Task<ActionResult<DocumentDto>> GetDocument(Guid id)
         {
-            var document = await _context.Documents.FindAsync(id);
-
-            if (document == null)
+            var documentDto = await _documentService.GetByIdAsync(id);
+            if (documentDto == null)
             {
                 return NotFound();
             }
-
-            return document;
+            return Ok(documentDto);
         }
 
         // PUT: api/Documents/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDocument(Guid id, Document document)
+        public async Task<IActionResult> PutDocument(Guid id, DocumentDto document)
         {
             if (id != document.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(document).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DocumentExists(id))
+                var updatedDocument = await _documentService.UpdateAsync(document);
+                if (updatedDocument == null)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
             }
-
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             return NoContent();
         }
 
         // POST: api/Documents
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Document>> PostDocument(Document document)
+        public async Task<ActionResult<DocumentDto>> PostDocument(DocumentDto document)
         {
-            _context.Documents.Add(document);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDocument", new { id = document.Id }, document);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var documentDtoCreated = await _documentService.CreateAsync(document);
+            if (documentDtoCreated == null)
+            {
+                return BadRequest(ModelState);
+            }
+            return CreatedAtAction("GetDocument", new { id = documentDtoCreated.Id }, documentDtoCreated);
         }
 
         // DELETE: api/Documents/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDocument(Guid id)
         {
-            var document = await _context.Documents.FindAsync(id);
-            if (document == null)
+            var deletedDocument = await _documentService.DeleteAsync(id);
+            if (deletedDocument == null)
             {
                 return NotFound();
             }
-
-            _context.Documents.Remove(document);
-            await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool DocumentExists(Guid id)
-        {
-            return _context.Documents.Any(e => e.Id == id);
         }
     }
 }

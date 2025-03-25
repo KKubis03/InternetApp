@@ -29,6 +29,8 @@ namespace OzeSomeAPI
             builder.Services.AddScoped<ProductService>();
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<MeetingService>();
+            builder.Services.AddScoped<DocumentService>();
+            builder.Services.AddScoped<ContractService>();
 
             var app = builder.Build();
 

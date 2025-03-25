@@ -24,7 +24,8 @@ namespace OzeSomeAPI
             CreateMap<Order, OrderDto>();
             CreateMap<OrderDto, Order>();
             // Product Mapping
-            CreateMap<Product, ProductDto>();
+            CreateMap<Product, ProductDto>()
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.CategoryName));
             CreateMap<ProductDto, Product>();
             // User Mapping
             CreateMap<User, UserDto>();
@@ -44,6 +45,16 @@ namespace OzeSomeAPI
                 .ForMember(dest => dest.CustomerFirstName, opt => opt.MapFrom(src => src.Customer.FirstName))
                 .ForMember(dest => dest.CustomerLastName, opt => opt.MapFrom(src => src.Customer.LastName));
             CreateMap<MeetingDto, Meeting>();
+            // Document Mapping
+            CreateMap<Document, DocumentDto>();
+            CreateMap<DocumentDto, Document>();
+            // Contract Mapping
+            CreateMap<Contract, ContractDto>()
+                .ForMember(dest => dest.CustomerFirstName, opt => opt.MapFrom(src => src.Customer.FirstName))
+                .ForMember(dest => dest.CustomerLastName, opt => opt.MapFrom(src => src.Customer.LastName))
+                .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.Order.OrderDate))
+                .ForMember(dest => dest.OrderStatus, opt => opt.MapFrom(src => src.Order.OrderStatus));
+            CreateMap<ContractDto, Contract>();
         }
     }
 }

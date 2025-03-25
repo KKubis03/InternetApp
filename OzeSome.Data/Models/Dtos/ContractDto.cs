@@ -3,16 +3,14 @@
     public class ContractDto
     {
         public Guid Id { get; set; }
+        public Guid CustomerId { get; set; }
+        public Guid OrderId { get; set; }
         // Customer Data
-        public string CustomerFirstName { get; set; } = null!;
-        public string CustomerLastName { get; set; } = null!;
+        public string? CustomerFirstName { get; set; }
+        public string? CustomerLastName { get; set; }
         // Order Data
-        public DateTime OrderDate { get; set; }
-        public string OrderStatus { get; set; } = null!;
-        public string ContractStatus { get; set; } = null!;
-        // Product Data
-        public string ProductName { get; set; } = null!;
-        public string CategoryName { get; set; } = null!;
-        public decimal ProductPrice { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public string? OrderStatus { get; set; }
+        public string? ContractStatus { get; set; }
     }
 }
