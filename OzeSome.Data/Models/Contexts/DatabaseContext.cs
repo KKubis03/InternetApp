@@ -118,19 +118,21 @@ public partial class DatabaseContext : DbContext
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
-            entity.HasKey(e => new { e.OrderId, e.CustomerId, e.ProductId }).HasName("PK__OrderDet__956EB14403519329");
+            entity.HasKey(e => e.Id).HasName("PK__OrderDet__3214EC07A120D591");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.OrderDetails)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__OrderDeta__Custo__4BAC3F29");
+                .HasConstraintName("FK__OrderDeta__Custo__628FA481");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__OrderDeta__Order__4AB81AF0");
+                .HasConstraintName("FK__OrderDeta__Order__619B8048");
 
             entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__OrderDeta__Produ__4CA06362");
+                .HasConstraintName("FK__OrderDeta__Produ__6383C8BA");
         });
 
         modelBuilder.Entity<Product>(entity =>

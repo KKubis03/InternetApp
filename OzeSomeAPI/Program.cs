@@ -31,7 +31,8 @@ namespace OzeSomeAPI
             builder.Services.AddScoped<MeetingService>();
             builder.Services.AddScoped<DocumentService>();
             builder.Services.AddScoped<ContractService>();
-
+            builder.Services.AddScoped<OrderDetailsService>();
+            builder.Services.AddScoped<TaskService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

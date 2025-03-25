@@ -6,22 +6,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OzeSome.Data.Models;
 
-[PrimaryKey("OrderId", "CustomerId", "ProductId")]
 public partial class OrderDetail
 {
     [Key]
+    public Guid Id { get; set; }
+
     public Guid OrderId { get; set; }
 
-    [Key]
     public Guid CustomerId { get; set; }
 
-    [Key]
     public Guid ProductId { get; set; }
 
     [Column(TypeName = "money")]
     public decimal TotalAmount { get; set; }
 
     public int Quantity { get; set; }
+
+    [Column(TypeName = "datetime")]
+    public DateTime CreationDateTime { get; set; }
+
+    [Column(TypeName = "datetime")]
+    public DateTime? EditDateTime { get; set; }
+
+    [Column(TypeName = "datetime")]
+    public DateTime? DeleteDateTime { get; set; }
+
+    public bool IsActive { get; set; }
 
     [ForeignKey("CustomerId")]
     [InverseProperty("OrderDetails")]

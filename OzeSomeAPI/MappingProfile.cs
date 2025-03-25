@@ -9,7 +9,12 @@ namespace OzeSomeAPI
         public MappingProfile()
         {
             // Customer Mapping
-            CreateMap<Customer, CustomerDto>();
+            CreateMap<Customer, CustomerDto>()
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Address.Street))
+                .ForMember(dest => dest.Number, opt => opt.MapFrom(src => src.Address.Number))
+                .ForMember(dest => dest.Code, opt => opt.MapFrom(src => src.Address.Code))
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Address.Country));
             CreateMap<CustomerDto, Customer>();
             // Address Mapping
             CreateMap<Address, AddressDto>();
@@ -55,6 +60,21 @@ namespace OzeSomeAPI
                 .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.Order.OrderDate))
                 .ForMember(dest => dest.OrderStatus, opt => opt.MapFrom(src => src.Order.OrderStatus));
             CreateMap<ContractDto, Contract>();
+            // OrderDetail Mapping
+            CreateMap<OrderDetail, OrderDetailsDto>()
+                .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.Order.OrderDate))
+                .ForMember(dest => dest.OrderStatus, opt => opt.MapFrom(src => src.Order.OrderStatus))
+                .ForMember(dest => dest.CustomerFirstName, opt => opt.MapFrom(src => src.Customer.FirstName))
+                .ForMember(dest => dest.CustomerLastName, opt => opt.MapFrom(src => src.Customer.LastName))
+                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.ProductName))
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Product.Category.CategoryName))
+                .ForMember(dest => dest.ProductPrice, opt => opt.MapFrom(src => src.Product.Price));
+            CreateMap<OrderDetailsDto, OrderDetail>();
+            // Task Mapping
+            CreateMap<OzeSome.Data.Models.Task, TaskDto>();
+            CreateMap<TaskDto, OzeSome.Data.Models.Task>();
+
+            
         }
     }
 }

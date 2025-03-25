@@ -54,6 +54,7 @@ namespace OzeSomeAPI.Services
             if (category != null)
             {
                 _mapper.Map(dto, category);
+                category.EditDateTime = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
             }
             return category;

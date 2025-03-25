@@ -16,7 +16,7 @@ public partial class Contract
     public Guid OrderId { get; set; }
 
     [StringLength(100)]
-    public string? ContractStatus { get; set; }
+    public string ContractStatus { get; set; } = null!;
 
     [Column(TypeName = "datetime")]
     public DateTime CreationDateTime { get; set; }
