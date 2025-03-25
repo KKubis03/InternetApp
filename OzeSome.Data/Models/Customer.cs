@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace OzeSome.Data.Models;
 
@@ -9,20 +11,19 @@ public partial class Customer
     [Key]
     public Guid Id { get; set; }
 
-    [StringLength(30)]
+    [StringLength(50)]
     public string FirstName { get; set; } = null!;
 
-    [StringLength(30)]
+    [StringLength(50)]
     public string LastName { get; set; } = null!;
 
-    [StringLength(20)]
-    [MaxLength(20)]
+    [StringLength(50)]
     public string PhoneNumber { get; set; } = null!;
 
-    [StringLength(60)]
+    [StringLength(100)]
     public string Email { get; set; } = null!;
 
-    public Guid AddressId { get; set; }
+    public Guid? AddressId { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime CreationDateTime { get; set; }
@@ -40,14 +41,11 @@ public partial class Customer
     public virtual Address? Address { get; set; }
 
     [InverseProperty("Customer")]
-    [JsonIgnore]
     public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 
     [InverseProperty("Customer")]
-    [JsonIgnore]
     public virtual ICollection<Meeting> Meetings { get; set; } = new List<Meeting>();
 
     [InverseProperty("Customer")]
-    [JsonIgnore]
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 }

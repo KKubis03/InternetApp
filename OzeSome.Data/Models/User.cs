@@ -1,24 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace OzeSome.Data.Models;
-
 
 public partial class User
 {
     [Key]
     public Guid Id { get; set; }
 
-    [StringLength(30)]
+    [StringLength(50)]
     public string FirstName { get; set; } = null!;
 
-    [StringLength(30)]
+    [StringLength(50)]
     public string LastName { get; set; } = null!;
 
     [StringLength(60)]
     public string Position { get; set; } = null!;
 
-    [StringLength(30)]
+    [StringLength(50)]
     public string Email { get; set; } = null!;
 
     [StringLength(30)]

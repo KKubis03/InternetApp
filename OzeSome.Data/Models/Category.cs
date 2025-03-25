@@ -1,5 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace OzeSome.Data.Models;
 
@@ -8,7 +11,7 @@ public partial class Category
     [Key]
     public Guid Id { get; set; }
 
-    [StringLength(60)]
+    [StringLength(100)]
     public string CategoryName { get; set; } = null!;
 
     [Column(TypeName = "datetime")]

@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using OzeSome.Data.Models;
 
 namespace OzeSome.Data.Models.Contexts;
 
@@ -33,95 +36,126 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<Task> Tasks { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=Kacper;Integrated Security=True;Trust Server Certificate=True;Database=ozesome");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Address>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Addresse__3214EC07AF680AC0");
+            entity.HasKey(e => e.Id).HasName("PK__Addresse__3214EC07C7E732E1");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
         });
 
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Categori__3214EC0793472247");
+            entity.HasKey(e => e.Id).HasName("PK__Categori__3214EC07D4C97B6D");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
         });
 
         modelBuilder.Entity<Contract>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Contract__3214EC0745BEC916");
+            entity.HasKey(e => e.Id).HasName("PK__Contract__3214EC07441B9C09");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Contracts)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Contracts__Custo__4E88ABD4");
+                .HasConstraintName("FK__Contracts__Custo__571DF1D5");
 
             entity.HasOne(d => d.Order).WithMany(p => p.Contracts)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Contracts__Order__4F7CD00D");
+                .HasConstraintName("FK__Contracts__Order__5812160E");
         });
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07C996000C");
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07DB80E308");
 
-            entity.HasOne(d => d.Address).WithMany(p => p.Customers).HasConstraintName("FK__Customers__Addre__3B75D760");
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+            entity.HasOne(d => d.Address).WithMany(p => p.Customers).HasConstraintName("FK__Customers__Addre__3E52440B");
         });
 
         modelBuilder.Entity<Document>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Document__3214EC07CA6E391C");
+            entity.HasKey(e => e.Id).HasName("PK__Document__3214EC07DDDD5B38");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
         });
 
         modelBuilder.Entity<Meeting>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Meetings__3214EC07D76E5351");
+            entity.HasKey(e => e.Id).HasName("PK__Meetings__3214EC070EE8F1C7");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Meetings)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Meetings__Custom__4BAC3F29");
+                .HasConstraintName("FK__Meetings__Custom__534D60F1");
         });
 
         modelBuilder.Entity<Note>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Notes__3214EC07449E802A");
+            entity.HasKey(e => e.Id).HasName("PK__Notes__3214EC075740B188");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
         });
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Orders__3214EC07A78E7CB3");
+            entity.HasKey(e => e.Id).HasName("PK__Orders__3214EC072A6D65E3");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
         });
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__OrderDet__C3905BCFA0F1359D");
-
-            entity.Property(e => e.OrderId).ValueGeneratedNever();
+            entity.HasKey(e => new { e.OrderId, e.CustomerId, e.ProductId }).HasName("PK__OrderDet__956EB14403519329");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.OrderDetails)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__OrderDeta__Custo__45F365D3");
+                .HasConstraintName("FK__OrderDeta__Custo__4BAC3F29");
 
-            entity.HasOne(d => d.Order).WithOne(p => p.OrderDetail)
+            entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__OrderDeta__Order__44FF419A");
+                .HasConstraintName("FK__OrderDeta__Order__4AB81AF0");
 
             entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__OrderDeta__Produ__46E78A0C");
+                .HasConstraintName("FK__OrderDeta__Produ__4CA06362");
         });
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Products__3214EC0717AB9787");
+            entity.HasKey(e => e.Id).HasName("PK__Products__3214EC07D066AE5F");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Products__Catego__403A8C7D");
+                .HasConstraintName("FK__Products__Catego__44FF419A");
+        });
+
+        modelBuilder.Entity<Task>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Tasks__3214EC077AE2488A");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC070B2A6EBB");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07BE4875DF");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
         });
 
         OnModelCreatingPartial(modelBuilder);

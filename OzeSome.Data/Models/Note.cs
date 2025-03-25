@@ -1,5 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace OzeSome.Data.Models;
 
@@ -8,7 +11,7 @@ public partial class Note
     [Key]
     public Guid Id { get; set; }
 
-    [StringLength(50)]
+    [StringLength(255)]
     public string Title { get; set; } = null!;
 
     [StringLength(500)]

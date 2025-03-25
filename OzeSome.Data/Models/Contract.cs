@@ -1,7 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace OzeSome.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
+namespace OzeSome.Data.Models;
 
 public partial class Contract
 {
@@ -12,7 +15,7 @@ public partial class Contract
 
     public Guid OrderId { get; set; }
 
-    [StringLength(40)]
+    [StringLength(100)]
     public string ContractStatus { get; set; } = null!;
 
     [Column(TypeName = "datetime")]

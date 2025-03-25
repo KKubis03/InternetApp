@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace OzeSome.Data.Models;
 
@@ -9,23 +11,23 @@ public partial class Address
     [Key]
     public Guid Id { get; set; }
 
-    [StringLength(30)]
+    [StringLength(50)]
     public string Street { get; set; } = null!;
 
-    [StringLength(30)]
+    [StringLength(50)]
     public string Number { get; set; } = null!;
 
-    [StringLength(30)]
+    [StringLength(50)]
     public string Code { get; set; } = null!;
 
-    [StringLength(30)]
+    [StringLength(50)]
     public string City { get; set; } = null!;
 
-    [StringLength(30)]
+    [StringLength(50)]
     public string Country { get; set; } = null!;
 
     [Column(TypeName = "datetime")]
-    public DateTime CreationDateTime { get; set; } = DateTime.UtcNow;
+    public DateTime CreationDateTime { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime? EditDateTime { get; set; }
@@ -36,6 +38,5 @@ public partial class Address
     public bool IsActive { get; set; }
 
     [InverseProperty("Address")]
-    [JsonIgnore]
     public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
 }

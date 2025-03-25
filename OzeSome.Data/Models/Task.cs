@@ -6,18 +6,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OzeSome.Data.Models;
 
-public partial class Meeting
+public partial class Task
 {
     [Key]
     public Guid Id { get; set; }
 
-    public Guid CustomerId { get; set; }
+    [StringLength(255)]
+    public string Title { get; set; } = null!;
+
+    [StringLength(255)]
+    public string TaskStatus { get; set; } = null!;
+
+    [StringLength(500)]
+    public string Content { get; set; } = null!;
 
     [Column(TypeName = "datetime")]
-    public DateTime MeetingDate { get; set; }
-
-    [StringLength(100)]
-    public string MeetingStatus { get; set; } = null!;
+    public DateTime Deadline { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime CreationDateTime { get; set; }
@@ -29,8 +33,4 @@ public partial class Meeting
     public DateTime? DeleteDateTime { get; set; }
 
     public bool IsActive { get; set; }
-
-    [ForeignKey("CustomerId")]
-    [InverseProperty("Meetings")]
-    public virtual Customer Customer { get; set; } = null!;
 }

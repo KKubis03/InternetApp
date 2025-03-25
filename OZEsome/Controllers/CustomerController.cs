@@ -27,7 +27,7 @@ namespace OZEsome.Controllers
         }
 
         // GET: Customer/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -91,7 +91,7 @@ namespace OZEsome.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,PhoneNumber,Email,AddressId,CreationDateTime,EditDateTime,DeleteDateTime,IsActive")] Customer customer)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,FirstName,LastName,PhoneNumber,Email,AddressId,CreationDateTime,EditDateTime,DeleteDateTime,IsActive")] Customer customer)
         {
             if (id != customer.Id)
             {
@@ -123,7 +123,7 @@ namespace OZEsome.Controllers
         }
 
         // GET: Customer/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -156,7 +156,7 @@ namespace OZEsome.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CustomerExists(int id)
+        private bool CustomerExists(Guid id)
         {
             return _context.Customers.Any(e => e.Id == id);
         }
