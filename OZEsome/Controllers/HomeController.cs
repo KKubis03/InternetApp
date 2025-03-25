@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OZEsome.Controllers;
@@ -6,15 +6,18 @@ namespace OZEsome.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly Client _client;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, Client client)
     {
         _logger = logger;
+        _client = client;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var data = await _client.NotesAllAsync();
+        return View(data);
     }
 
     public IActionResult Privacy()
