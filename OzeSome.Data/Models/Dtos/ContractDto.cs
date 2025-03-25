@@ -2,7 +2,7 @@
 {
     public class ContractDto
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         // Customer Data
         public string CustomerFirstName { get; set; } = null!;
         public string CustomerLastName { get; set; } = null!;

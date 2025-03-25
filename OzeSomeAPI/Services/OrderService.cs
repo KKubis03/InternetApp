@@ -22,7 +22,7 @@ namespace OzeSomeAPI.Services
             return _mapper.Map<OrderDto>(order);
         }
 
-        public override async Task<bool> DeleteAsync(int id)
+        public override async Task<bool> DeleteAsync(Guid id)
         {
             var order = await _context.Orders.FindAsync(id);
             if (order == null)
@@ -42,7 +42,7 @@ namespace OzeSomeAPI.Services
             return ordersDto;
         }
 
-        public override async Task<OrderDto> GetByIdAsync(int id)
+        public override async Task<OrderDto> GetByIdAsync(Guid id)
         {
             var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == id && o.IsActive == true);
             return _mapper.Map<OrderDto>(order);

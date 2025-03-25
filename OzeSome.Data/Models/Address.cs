@@ -7,7 +7,7 @@ namespace OzeSome.Data.Models;
 public partial class Address
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     [StringLength(30)]
     public string Street { get; set; } = null!;

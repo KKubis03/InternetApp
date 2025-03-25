@@ -6,7 +6,7 @@ namespace OzeSome.Data.Models;
 public partial class Category
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     [StringLength(60)]
     public string CategoryName { get; set; } = null!;

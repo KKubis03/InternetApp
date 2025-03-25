@@ -23,7 +23,7 @@ namespace OzeSomeAPI.Services
             return _mapper.Map<CategoryDto>(category);
         }
 
-        public override async Task<bool> DeleteAsync(int id)
+        public override async Task<bool> DeleteAsync(Guid id)
         {
             var category = await _context.Categories.FindAsync(id);
             if (category == null)
@@ -42,7 +42,7 @@ namespace OzeSomeAPI.Services
             return _mapper.Map<List<CategoryDto>>(categories);
         }
 
-        public override async Task<CategoryDto> GetByIdAsync(int id)
+        public override async Task<CategoryDto> GetByIdAsync(Guid id)
         {
             var category = await _context.Categories.FindAsync(id);
             return _mapper.Map<CategoryDto>(category);

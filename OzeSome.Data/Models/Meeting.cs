@@ -7,9 +7,9 @@ namespace OzeSome.Data.Models;
 public partial class Meeting
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
-    public int CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime MeetingDate { get; set; }

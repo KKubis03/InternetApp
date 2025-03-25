@@ -25,7 +25,7 @@ namespace OzeSomeAPI.Controllers
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductDto>> GetProduct(int id)
+        public async Task<ActionResult<ProductDto>> GetProduct(Guid id)
         {
             var productDto = await _productService.GetByIdAsync(id);
             if (productDto == null)
@@ -38,7 +38,7 @@ namespace OzeSomeAPI.Controllers
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, ProductDto productDto)
+        public async Task<IActionResult> PutProduct(Guid id, ProductDto productDto)
         {
             if (id != productDto.Id)
             {
@@ -78,7 +78,7 @@ namespace OzeSomeAPI.Controllers
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteProduct(Guid id)
         {
             var result = await _productService.DeleteAsync(id);
             if (result == null)

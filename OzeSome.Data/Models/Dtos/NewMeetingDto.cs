@@ -2,8 +2,8 @@
 {
     public class NewMeetingDto
     {
-        public int Id { get; set; }
-        public int CustomerId { get; set; }
+        public Guid Id { get; set; }
+        public Guid CustomerId { get; set; }
         public DateTime MeetingDate { get; set; }
         public string MeetingStatus { get; set; } = null!;
     }

@@ -7,11 +7,12 @@ namespace OzeSome.Data.Models;
 public partial class OrderDetail
 {
     [Key]
-    public int OrderId { get; set; }
+    public Guid Id { get; set; }
+    public Guid OrderId { get; set; }
 
-    public int CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
 
-    public int ProductId { get; set; }
+    public Guid ProductId { get; set; }
 
     [Column(TypeName = "money")]
     public decimal TotalAmount { get; set; }

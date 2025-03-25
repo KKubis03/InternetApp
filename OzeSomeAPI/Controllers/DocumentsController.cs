@@ -25,7 +25,7 @@ namespace OzeSomeAPI.Controllers
 
         // GET: api/Documents/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Document>> GetDocument(int id)
+        public async Task<ActionResult<Document>> GetDocument(Guid id)
         {
             var document = await _context.Documents.FindAsync(id);
 
@@ -40,7 +40,7 @@ namespace OzeSomeAPI.Controllers
         // PUT: api/Documents/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDocument(int id, Document document)
+        public async Task<IActionResult> PutDocument(Guid id, Document document)
         {
             if (id != document.Id)
             {
@@ -81,7 +81,7 @@ namespace OzeSomeAPI.Controllers
 
         // DELETE: api/Documents/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDocument(int id)
+        public async Task<IActionResult> DeleteDocument(Guid id)
         {
             var document = await _context.Documents.FindAsync(id);
             if (document == null)
@@ -95,7 +95,7 @@ namespace OzeSomeAPI.Controllers
             return NoContent();
         }
 
-        private bool DocumentExists(int id)
+        private bool DocumentExists(Guid id)
         {
             return _context.Documents.Any(e => e.Id == id);
         }

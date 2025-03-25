@@ -25,7 +25,7 @@ namespace OzeSomeAPI.Controllers
 
         // GET: api/Addresses/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<AddressDto>> GetAddress(int id)
+        public async Task<ActionResult<AddressDto>> GetAddress(Guid id)
         {
             var addressDto = await _addressService.GetByIdAsync(id);
             if (addressDto == null)
@@ -38,7 +38,7 @@ namespace OzeSomeAPI.Controllers
         // PUT: api/Addresses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAddress(int id, AddressDto addressDto)
+        public async Task<IActionResult> PutAddress(Guid id, AddressDto addressDto)
         {
             if (id != addressDto.Id)
             {
@@ -78,7 +78,7 @@ namespace OzeSomeAPI.Controllers
 
         // DELETE: api/Addresses/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAddress(int id)
+        public async Task<IActionResult> DeleteAddress(Guid id)
         {
             var result = await _addressService.DeleteAsync(id);
             if (!result)

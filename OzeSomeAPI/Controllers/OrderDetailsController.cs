@@ -25,7 +25,7 @@ namespace OzeSomeAPI.Controllers
 
         // GET: api/OrderDetails/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderDetail>> GetOrderDetail(int id)
+        public async Task<ActionResult<OrderDetail>> GetOrderDetail(Guid id)
         {
             var orderDetail = await _context.OrderDetails.FindAsync(id);
 
@@ -40,7 +40,7 @@ namespace OzeSomeAPI.Controllers
         // PUT: api/OrderDetails/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrderDetail(int id, OrderDetail orderDetail)
+        public async Task<IActionResult> PutOrderDetail(Guid id, OrderDetail orderDetail)
         {
             if (id != orderDetail.OrderId)
             {
@@ -95,7 +95,7 @@ namespace OzeSomeAPI.Controllers
 
         // DELETE: api/OrderDetails/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrderDetail(int id)
+        public async Task<IActionResult> DeleteOrderDetail(Guid id)
         {
             var orderDetail = await _context.OrderDetails.FindAsync(id);
             if (orderDetail == null)
@@ -109,7 +109,7 @@ namespace OzeSomeAPI.Controllers
             return NoContent();
         }
 
-        private bool OrderDetailExists(int id)
+        private bool OrderDetailExists(Guid id)
         {
             return _context.OrderDetails.Any(e => e.OrderId == id);
         }

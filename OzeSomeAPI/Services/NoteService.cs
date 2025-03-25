@@ -22,7 +22,7 @@ namespace OzeSomeAPI.Services
             return _mapper.Map<NoteDto>(note);
         }
 
-        public override async Task<bool> DeleteAsync(int id)
+        public override async Task<bool> DeleteAsync(Guid id)
         {
             var note = await _context.Notes.FindAsync(id);
             if (note == null)
@@ -42,7 +42,7 @@ namespace OzeSomeAPI.Services
             return notesDto;
         }
 
-        public override async Task<NoteDto> GetByIdAsync(int id)
+        public override async Task<NoteDto> GetByIdAsync(Guid id)
         {
             var note = await _context.Notes.FirstOrDefaultAsync(n => n.Id == id && n.IsActive == true);
             return _mapper.Map<NoteDto>(note);

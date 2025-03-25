@@ -25,7 +25,7 @@ namespace OzeSomeAPI.Controllers
 
         // GET: api/Meetings/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Meeting>> GetMeeting(int id)
+        public async Task<ActionResult<Meeting>> GetMeeting(Guid id)
         {
             var meeting = await _context.Meetings.FindAsync(id);
 
@@ -40,7 +40,7 @@ namespace OzeSomeAPI.Controllers
         // PUT: api/Meetings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMeeting(int id, Meeting meeting)
+        public async Task<IActionResult> PutMeeting(Guid id, Meeting meeting)
         {
             if (id != meeting.Id)
             {
@@ -81,7 +81,7 @@ namespace OzeSomeAPI.Controllers
 
         // DELETE: api/Meetings/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMeeting(int id)
+        public async Task<IActionResult> DeleteMeeting(Guid id)
         {
             var meeting = await _context.Meetings.FindAsync(id);
             if (meeting == null)
@@ -95,7 +95,7 @@ namespace OzeSomeAPI.Controllers
             return NoContent();
         }
 
-        private bool MeetingExists(int id)
+        private bool MeetingExists(Guid id)
         {
             return _context.Meetings.Any(e => e.Id == id);
         }

@@ -7,7 +7,7 @@ namespace OzeSome.Data.Models;
 public partial class Order
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime OrderDate { get; set; }

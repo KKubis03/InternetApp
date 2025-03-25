@@ -22,7 +22,7 @@ namespace OzeSomeAPI.Services
             return _mapper.Map<CustomerDto>(customer);
         }
 
-        public override async Task<bool> DeleteAsync(int Id)
+        public override async Task<bool> DeleteAsync(Guid Id)
         {
             var customer = await _context.Customers.FindAsync(Id);
             if (customer == null)
@@ -42,7 +42,7 @@ namespace OzeSomeAPI.Services
             return customersDto;
         }
 
-        public override async Task<CustomerDto> GetByIdAsync(int id)
+        public override async Task<CustomerDto> GetByIdAsync(Guid id)
         {
             var customer = await _context.Customers.Include(c => c.Address).FirstOrDefaultAsync(c => c.Id == id && c.IsActive == true);
             return _mapper.Map<CustomerDto>(customer);
@@ -59,7 +59,7 @@ namespace OzeSomeAPI.Services
             }
             return customer;
         }
-        protected bool CustomerExists(int id)
+        protected bool CustomerExists(Guid id)
         {
             return _context.Customers.Any(e => e.Id == id);
         }

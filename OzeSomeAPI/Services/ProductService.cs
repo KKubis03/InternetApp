@@ -30,7 +30,7 @@ namespace OzeSomeAPI.Services
             return _mapper.Map<ProductDto>(product);
         }
 
-        public override async Task<bool> DeleteAsync(int id)
+        public override async Task<bool> DeleteAsync(Guid id)
         {
             var product = await _context.Products.FindAsync(id);
             if (product == null)
@@ -50,7 +50,7 @@ namespace OzeSomeAPI.Services
             return productsDto;
         }
 
-        public override async Task<ProductDto> GetByIdAsync(int id)
+        public override async Task<ProductDto> GetByIdAsync(Guid id)
         {
             var product = await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id && p.IsActive == true);
             return _mapper.Map<ProductDto>(product);

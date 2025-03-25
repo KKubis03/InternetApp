@@ -7,7 +7,7 @@ namespace OzeSome.Data.Models;
 public partial class Customer
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     [StringLength(30)]
     public string FirstName { get; set; } = null!;
@@ -22,7 +22,7 @@ public partial class Customer
     [StringLength(60)]
     public string Email { get; set; } = null!;
 
-    public int? AddressId { get; set; }
+    public Guid AddressId { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime CreationDateTime { get; set; }

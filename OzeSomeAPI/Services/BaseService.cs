@@ -19,7 +19,7 @@ namespace OzeSomeAPI.Services
             _mapper = mapper;
         }
 
-        public abstract Task<Dto> GetByIdAsync(int id);
+        public abstract Task<Dto> GetByIdAsync(Guid id);
 
         public abstract Task<IEnumerable<Dto>> GetAllAsync();
 
@@ -27,7 +27,7 @@ namespace OzeSomeAPI.Services
 
         public abstract Task<ModelType> UpdateAsync(Dto dto);
 
-        public abstract Task<bool> DeleteAsync(int id);
+        public abstract Task<bool> DeleteAsync(Guid id);
     }
 
 }

@@ -2,9 +2,9 @@
 {
     public class NewOrderDetailsDto
     {
-        public int OrderId { get; set; }
-        public int CustomerId { get; set; }
-        public int ProductId { get; set; }
+        public Guid OrderId { get; set; }
+        public Guid CustomerId { get; set; }
+        public Guid ProductId { get; set; }
         public decimal TotalAmount { get; set; }
     }
 }

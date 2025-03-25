@@ -25,7 +25,7 @@ namespace OzeSomeAPI.Controllers
 
         // GET: api/Customers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CustomerDto>> GetCustomer(int id)
+        public async Task<ActionResult<CustomerDto>> GetCustomer(Guid id)
         {
             var customerDto = await _customerService.GetByIdAsync(id);
             if (customerDto == null)
@@ -37,7 +37,7 @@ namespace OzeSomeAPI.Controllers
 
         // PUT: api/Customers/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCustomer(int id, CustomerDto customerDto)
+        public async Task<IActionResult> PutCustomer(Guid id, CustomerDto customerDto)
         {
             if (id != customerDto.Id)
             {
@@ -76,7 +76,7 @@ namespace OzeSomeAPI.Controllers
 
         // DELETE: api/Customers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCustomer(int id)
+        public async Task<IActionResult> DeleteCustomer(Guid id)
         {
             var result = await _customerService.DeleteAsync(id);
             if (!result)

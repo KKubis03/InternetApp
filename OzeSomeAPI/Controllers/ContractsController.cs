@@ -25,7 +25,7 @@ namespace OzeSomeAPI.Controllers
 
         // GET: api/Contracts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Contract>> GetContract(int id)
+        public async Task<ActionResult<Contract>> GetContract(Guid id)
         {
             var contract = await _context.Contracts.FindAsync(id);
 
@@ -40,7 +40,7 @@ namespace OzeSomeAPI.Controllers
         // PUT: api/Contracts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutContract(int id, Contract contract)
+        public async Task<IActionResult> PutContract(Guid id, Contract contract)
         {
             if (id != contract.Id)
             {
@@ -81,7 +81,7 @@ namespace OzeSomeAPI.Controllers
 
         // DELETE: api/Contracts/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteContract(int id)
+        public async Task<IActionResult> DeleteContract(Guid id)
         {
             var contract = await _context.Contracts.FindAsync(id);
             if (contract == null)
@@ -95,7 +95,7 @@ namespace OzeSomeAPI.Controllers
             return NoContent();
         }
 
-        private bool ContractExists(int id)
+        private bool ContractExists(Guid id)
         {
             return _context.Contracts.Any(e => e.Id == id);
         }

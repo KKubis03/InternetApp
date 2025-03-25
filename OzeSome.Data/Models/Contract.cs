@@ -6,11 +6,11 @@ namespace OzeSome.Data.Models;
 public partial class Contract
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
-    public int CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
 
-    public int OrderId { get; set; }
+    public Guid OrderId { get; set; }
 
     [StringLength(40)]
     public string ContractStatus { get; set; } = null!;

@@ -6,7 +6,7 @@ namespace OzeSome.Data.Models;
 public partial class Document
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     [StringLength(255)]
     public string FileName { get; set; } = null!;

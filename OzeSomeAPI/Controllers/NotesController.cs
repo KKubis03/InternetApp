@@ -24,7 +24,7 @@ namespace OzeSomeAPI.Controllers
 
         // GET: api/Notes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<NoteDto>> GetNote(int id)
+        public async Task<ActionResult<NoteDto>> GetNote(Guid id)
         {
             var noteDto = await _noteService.GetByIdAsync(id);
             if (noteDto == null)
@@ -37,7 +37,7 @@ namespace OzeSomeAPI.Controllers
         // PUT: api/Notes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutNote(int id, NoteDto noteDto)
+        public async Task<IActionResult> PutNote(Guid id, NoteDto noteDto)
         {
             if(id != noteDto.Id)
             {
@@ -77,7 +77,7 @@ namespace OzeSomeAPI.Controllers
 
         // DELETE: api/Notes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteNote(int id)
+        public async Task<IActionResult> DeleteNote(Guid id)
         {
             var result = await _noteService.DeleteAsync(id);
             if (!result)

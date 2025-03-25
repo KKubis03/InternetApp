@@ -6,7 +6,7 @@ namespace OzeSome.Data.Models;
 public partial class Note
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     [StringLength(50)]
     public string Title { get; set; } = null!;

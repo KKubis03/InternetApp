@@ -26,7 +26,7 @@ namespace OzeSomeAPI.Services
             return dto;
         }
 
-        public override async Task<bool> DeleteAsync(int id)
+        public override async Task<bool> DeleteAsync(Guid id)
         {
             var orderDetail = await _context.OrderDetails.FindAsync(id);
             if (orderDetail == null)
@@ -45,7 +45,7 @@ namespace OzeSomeAPI.Services
             return orderDetailsDto;
         }
 
-        public override async Task<OrderDetailsDto> GetByIdAsync(int id)
+        public override async Task<OrderDetailsDto> GetByIdAsync(Guid id)
         {
             var orderDetail = await _context.OrderDetails.Include(o => o.Product).ThenInclude(o => o.Category).Include(o => o.Order).Include(o => o.Customer).FirstOrDefaultAsync(o => o.OrderId == id);
             return _mapper.Map<OrderDetailsDto>(orderDetail);
