@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OzeSome.Data.Models;
-using OzeSome.Data.Models.Contexts;
+using OzeSome.Data.Models.Dtos;
+using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
 {
@@ -9,95 +8,84 @@ namespace OzeSomeAPI.Controllers
     [ApiController]
     public class MeetingsController : ControllerBase
     {
-        private readonly DatabaseContext _context;
+        private readonly MeetingService _meetingService;
 
-        public MeetingsController(DatabaseContext context)
+        public MeetingsController(MeetingService meetingService)
         {
-            _context = context;
+            _meetingService = meetingService;
         }
 
         // GET: api/Meetings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Meeting>>> GetMeetings()
+        public async Task<ActionResult<IEnumerable<MeetingDto>>> GetMeetings()
         {
-            return await _context.Meetings.ToListAsync();
+            var meetingsDto = await _meetingService.GetAllAsync();
+            return Ok(meetingsDto);
         }
 
         // GET: api/Meetings/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Meeting>> GetMeeting(Guid id)
+        public async Task<ActionResult<MeetingDto>> GetMeeting(Guid id)
         {
-            var meeting = await _context.Meetings.FindAsync(id);
-
-            if (meeting == null)
+            var meetingDto = await _meetingService.GetByIdAsync(id);
+            if (meetingDto == null)
             {
                 return NotFound();
             }
-
-            return meeting;
+            return Ok(meetingDto);
         }
 
         // PUT: api/Meetings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMeeting(Guid id, Meeting meeting)
+        public async Task<IActionResult> PutMeeting(Guid id, MeetingDto meetingDto)
         {
-            if (id != meeting.Id)
+            if (id != meetingDto.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(meeting).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MeetingExists(id))
+                var updatedMeeting = await _meetingService.UpdateAsync(meetingDto);
+                if (updatedMeeting == null)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
             }
-
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             return NoContent();
         }
 
         // POST: api/Meetings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Meeting>> PostMeeting(Meeting meeting)
+        public async Task<ActionResult<MeetingDto>> PostMeeting(MeetingDto meetingDto)
         {
-            _context.Meetings.Add(meeting);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetMeeting", new { id = meeting.Id }, meeting);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var meetingDtoCreated = await _meetingService.CreateAsync(meetingDto);
+            if (meetingDtoCreated == null)
+            {
+                return BadRequest(ModelState);
+            }
+            return CreatedAtAction("GetMeeting", new { id = meetingDtoCreated.Id }, meetingDtoCreated);
         }
 
         // DELETE: api/Meetings/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMeeting(Guid id)
         {
-            var meeting = await _context.Meetings.FindAsync(id);
-            if (meeting == null)
+            var result = await _meetingService.DeleteAsync(id);
+            if (!result)
             {
                 return NotFound();
             }
-
-            _context.Meetings.Remove(meeting);
-            await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool MeetingExists(Guid id)
-        {
-            return _context.Meetings.Any(e => e.Id == id);
         }
     }
 }
