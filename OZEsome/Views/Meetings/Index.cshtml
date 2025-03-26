@@ -1,53 +1,54 @@
 ﻿@model IEnumerable<MeetingDto>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+	<a class="button bg-custom2 fg-white" asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MeetingDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MeetingStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerFirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerLastName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MeetingDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MeetingStatus)
-            </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerFirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerLastName)
-                </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.MeetingDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.MeetingStatus)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CustomerFirstName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CustomerLastName)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.MeetingDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.MeetingStatus)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CustomerFirstName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CustomerLastName)
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_edit.png"></img></a>
+					<a asp-action="Details" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_details.png"></img></a>
+					<a asp-action="Delete" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_delete.png"></img></a>
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>

@@ -6,37 +6,37 @@
 
 <h1>Edit</h1>
 
-<h4>Meeting</h4>
+<h4 class="createTitle">Meeting</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.Customers"></select>
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MeetingDate" class="control-label"></label>
-                <input asp-for="MeetingDate" class="form-control" />
-                <span asp-validation-for="MeetingDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MeetingStatus" class="control-label"></label>
-                <input asp-for="MeetingStatus" class="form-control" />
-                <span asp-validation-for="MeetingStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+			<div class="form-group">
+				<label asp-for="CustomerId" class="control-label"></label>
+				<select data-role="select" asp-for="CustomerId" class="form-control" asp-items="ViewBag.Customers" data-cls-option="bg-white fg-custom"
+						data-cls-selected-item="bg-custom"></select>
+			</div>
+			<div class="form-group">
+				<label asp-for="MeetingDate" class="label-input"></label>
+				<input asp-for="MeetingDate" type="text" data-role="calendarpicker">
+				<span asp-validation-for="MeetingDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="MeetingStatus" class="label-input"></label>
+				<input asp-for="MeetingStatus" class="form-control" placeholder="Enter a MeetingStatus"
+					   data-informer="Enter a valid MeetingStatus"
+					   data-role="materialinput" data-cls-line="bg-custom"
+					   data-cls-informer="fg-custom" />
+				<span asp-validation-for="MeetingStatus" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+				<input type="submit" value="Save" class="button bg-custom2 fg-white" />
+			</div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
