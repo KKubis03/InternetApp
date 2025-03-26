@@ -20,7 +20,7 @@
 			</div>
 			<div class="form-group">
 				<label asp-for="MeetingDate" class="label-input"></label>
-				<input asp-for="MeetingDate" type="text" data-role="calendarpicker">
+				<input asp-for="MeetingDate" type="text" data-role="calendarpicker" data-input-format="%d-%m-%y">
 				<span asp-validation-for="MeetingDate" class="text-danger"></span>
 			</div>
 			<div class="form-group">

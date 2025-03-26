@@ -2,7 +2,7 @@
 	ViewData["Title"] = "Home Page";
 }
 
-@* <div class="container-home">
+<div class="container-home">
 	<a asp-action="Login" style="color:white">
 		<div data-role="tile" data-size="large" class="bg-custom2 tile-custom">
 			<img src="~/Resources/Icons\icon_login.png" style="text-align:center; max-width:150px;" />
@@ -16,23 +16,3 @@
 		</a>
 	</div>
 </div>
- *@
- @model List<NoteDto>
-
-<h2>Dane z API</h2>
-
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Content</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Id</td>
-			<td>@item.Title</td>
-			<td>@item.Content</td>
-        </tr>
-    }
-</table>

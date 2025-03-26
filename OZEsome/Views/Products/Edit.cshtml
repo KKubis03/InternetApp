@@ -1,44 +1,49 @@
 ﻿@model ProductDto
 
 @{
-    ViewData["Title"] = "Edit";
+	ViewData["Title"] = "Edit";
 }
 
 <h1>Edit</h1>
 
-<h4>Product</h4>
+<h4 class="createTitle">Product</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" />
-                <span asp-validation-for="ProductName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryName" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="Id" />
+			<div class="form-group">
+				<label asp-for="ProductName" class="label-input">Name</label>
+				<input asp-for="ProductName" class="form-control" placeholder="Enter a Product Name"
+					   data-informer="Enter a valid Product Name"
+					   data-role="materialinput" data-cls-line="bg-custom"
+					   data-cls-informer="fg-custom" />
+				<span asp-validation-for="ProductName" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="CategoryName" class="control-label"></label>
+				<select data-role="select" asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories" data-cls-option="bg-white fg-custom"
+						data-cls-selected-item="bg-custom"></select>
+			</div>
+			<div class="form-group">
+				<label asp-for="Price" class="label-input"></label>
+				<input asp-for="Price" class="form-control" placeholder="Enter a Price"
+					   data-informer="Enter a valid Price"
+					   data-role="materialinput" data-cls-line="bg-custom"
+					   data-cls-informer="fg-custom" />
+				<span asp-validation-for="Price" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+				<input type="submit" value="Save" class="button bg-custom2 fg-white" />
+			</div>
+		</form>
+	</div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }
