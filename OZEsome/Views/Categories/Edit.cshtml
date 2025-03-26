@@ -6,7 +6,7 @@
 
 <h1>Edit</h1>
 
-<h4>Category</h4>
+<h4 class="createTitle">Category</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,19 +14,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="CategoryName" class="control-label"></label>
-                <input asp-for="CategoryName" class="form-control" />
+                <label asp-for="CategoryName" class="label-input"></label>
+                <input asp-for="CategoryName" class="form-control" placeholder="Enter Category name"
+                       data-informer="Enter a valid Category name"
+                       data-role="materialinput" data-cls-line="bg-custom"
+                       data-cls-informer="fg-custom" />
                 <span asp-validation-for="CategoryName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+                <input type="submit" value="Save" class="button bg-custom2 fg-white" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

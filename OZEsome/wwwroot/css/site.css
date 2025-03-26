@@ -51,7 +51,18 @@ input {
 .bg-custom3 {
     background-color: #706ebc !important;
 }
-
+.bg-customDelete {
+    background-color: #e74c3c !important;
+}
+.bg-customEdit {
+    background-color: #3498db !important;
+}
+.bg-customDetails {
+    background-color: #f1c40f !important;
+}
+.fg-white {
+    color: white !important;
+}
 .fg-custom {
     color: #00ADB5 !important;
 }
@@ -99,3 +110,13 @@ a {
     font-family: Arial;
     text-decoration: none;
 }
+.IndexIcon {
+    width: 20px;
+}
+.createTitle {
+    font-size: 30px;
+    font-family: revert;
+    font-weight: bold;
+    color: #00ADB5;
+}
+

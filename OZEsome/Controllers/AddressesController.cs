@@ -2,75 +2,75 @@
 
 namespace OZEsome.Controllers
 {
-    public class CategoriesController : Controller
+    public class AddressesController : Controller
     {
         private readonly Client _client;
 
-        public CategoriesController(Client client)
+        public AddressesController(Client client)
         {
             _client = client;
         }
 
-        // GET: Categories
+        // GET: Addresses
         public async Task<IActionResult> Index()
         {
-            return View(await _client.CategoriesAllAsync());
+            return View(await _client.AddressesAllAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: Addresses/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            var category = await _client.CategoriesGETAsync(id);
-            return View(category);
+            var address = await _client.AddressesGETAsync(id);
+            return View(address);
         }
 
-        // GET: Categories/Create
+        // GET: Addresses/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Addresses/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CategoryName")] CategoryDto category)
+        public async Task<IActionResult> Create([Bind("Id,Street,Number,Code,City,Country")] AddressDto address)
         {
             try
             {
-                await _client.CategoriesPOSTAsync(category);
+                await _client.AddressesPOSTAsync(address);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
             }
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Categories/Edit/5
+        // GET: Addresses/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            CategoryDto category = new CategoryDto();
+            AddressDto address = new AddressDto();
             try
             {
-                category = await _client.CategoriesGETAsync(id);
+                address = await _client.AddressesGETAsync(id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
             }
-            return View(category);
+            return View(address);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Addresses/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,CategoryName")] CategoryDto category)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Street,Number,Code,City,Country")] AddressDto address)
         {
             try
             {
-                await _client.CategoriesPUTAsync(id, category);
+                await _client.AddressesPUTAsync(id, address);
             }
             catch (Exception ex)
             {
@@ -78,28 +78,28 @@ namespace OZEsome.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Categories/Delete/5
+        // GET: Addresses/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
-            CategoryDto category = new CategoryDto();
+            AddressDto address = new AddressDto();
             try
             {
-                category = await _client.CategoriesGETAsync(id);
+                address = await _client.AddressesGETAsync(id);
             }
             catch (Exception ex)
             {
             }
-            return View(category);
+            return View(address);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Addresses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             try
             {
-                await _client.CategoriesDELETEAsync(id);
+                await _client.AddressesDELETEAsync(id);
                 RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

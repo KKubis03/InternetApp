@@ -1,76 +1,79 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace OZEsome.Controllers
 {
-    public class CategoriesController : Controller
+    public class ProductsController : Controller
     {
         private readonly Client _client;
 
-        public CategoriesController(Client client)
+        public ProductsController(Client client)
         {
             _client = client;
         }
 
-        // GET: Categories
+        // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _client.CategoriesAllAsync());
+            return View(await _client.ProductsAllAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: Products/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            var category = await _client.CategoriesGETAsync(id);
-            return View(category);
+            var product = await _client.ProductsGETAsync(id);
+            return View(product);
         }
 
-        // GET: Categories/Create
-        public IActionResult Create()
+        // GET: Products/Create
+        public async Task<IActionResult> Create()
         {
+            ViewBag.Categories = new SelectList(await _client.CategoriesAllAsync(), "Id", "CategoryName");
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CategoryName")] CategoryDto category)
+        public async Task<IActionResult> Create([Bind("Id,ProductName,CategoryId,Price")] ProductDto product)
         {
             try
             {
-                await _client.CategoriesPOSTAsync(category);
+                await _client.ProductsPOSTAsync(product);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
             }
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Categories/Edit/5
+        // GET: Products/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            CategoryDto category = new CategoryDto();
+            ViewBag.Categories = new SelectList(await _client.CategoriesAllAsync(), "Id", "CategoryName");
+            ProductDto product = new ProductDto();
             try
             {
-                category = await _client.CategoriesGETAsync(id);
+                product = await _client.ProductsGETAsync(id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
             }
-            return View(category);
+            return View(product);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,CategoryName")] CategoryDto category)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,ProductName,CategoryId,Price")] ProductDto product)
         {
             try
             {
-                await _client.CategoriesPUTAsync(id, category);
+                await _client.ProductsPUTAsync(id, product);
             }
             catch (Exception ex)
             {
@@ -78,28 +81,28 @@ namespace OZEsome.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Categories/Delete/5
+        // GET: Products/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
-            CategoryDto category = new CategoryDto();
+            ProductDto product = new ProductDto();
             try
             {
-                category = await _client.CategoriesGETAsync(id);
+                product = await _client.ProductsGETAsync(id);
             }
             catch (Exception ex)
             {
             }
-            return View(category);
+            return View(product);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             try
             {
-                await _client.CategoriesDELETEAsync(id);
+                await _client.ProductsDELETEAsync(id);
                 RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

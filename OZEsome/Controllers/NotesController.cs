@@ -2,75 +2,75 @@
 
 namespace OZEsome.Controllers
 {
-    public class CategoriesController : Controller
+    public class NotesController : Controller
     {
         private readonly Client _client;
 
-        public CategoriesController(Client client)
+        public NotesController(Client client)
         {
             _client = client;
         }
 
-        // GET: Categories
+        // GET: Notes
         public async Task<IActionResult> Index()
         {
-            return View(await _client.CategoriesAllAsync());
+            return View(await _client.NotesAllAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: Notes/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            var category = await _client.CategoriesGETAsync(id);
-            return View(category);
+            var note = await _client.NotesGETAsync(id);
+            return View(note);
         }
 
-        // GET: Categories/Create
+        // GET: Notes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Notes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CategoryName")] CategoryDto category)
+        public async Task<IActionResult> Create([Bind("Id,Title,Content")] NoteDto note)
         {
             try
             {
-                await _client.CategoriesPOSTAsync(category);
+                await _client.NotesPOSTAsync(note);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
             }
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Categories/Edit/5
+        // GET: Notes/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            CategoryDto category = new CategoryDto();
+            NoteDto note = new NoteDto();
             try
             {
-                category = await _client.CategoriesGETAsync(id);
+                note = await _client.NotesGETAsync(id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
             }
-            return View(category);
+            return View(note);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Notes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,CategoryName")] CategoryDto category)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Title,Content")] NoteDto note)
         {
             try
             {
-                await _client.CategoriesPUTAsync(id, category);
+                await _client.NotesPUTAsync(id, note);
             }
             catch (Exception ex)
             {
@@ -78,29 +78,28 @@ namespace OZEsome.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Categories/Delete/5
+        // GET: Notes/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
-            CategoryDto category = new CategoryDto();
+            NoteDto note = new NoteDto();
             try
             {
-                category = await _client.CategoriesGETAsync(id);
+                note = await _client.NotesGETAsync(id);
             }
             catch (Exception ex)
             {
             }
-            return View(category);
+            return View(note);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Notes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             try
             {
-                await _client.CategoriesDELETEAsync(id);
-                RedirectToAction(nameof(Index));
+                await _client.NotesDELETEAsync(id);
             }
             catch (Exception ex)
             {

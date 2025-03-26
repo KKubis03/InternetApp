@@ -55,7 +55,24 @@ namespace OZEsome
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Categories}/{action=Index}/{id?}");
-
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Documents}/{action=Index}/{id?}");
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Notes}/{action=Index}/{id?}");
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Tasks}/{action=Index}/{id?}");
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Orders}/{action=Index}/{id?}");
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Meetings}/{action=Index}/{id?}");
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Products}/{action=Index}/{id?}");
             app.Run();
         }
     }
