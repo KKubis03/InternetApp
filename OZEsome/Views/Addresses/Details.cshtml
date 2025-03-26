@@ -7,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Address</h4>
+    <h4 class="createTitle">Address</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -43,6 +43,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+    <a class="button bg-customEdit fg-white" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
 </div>

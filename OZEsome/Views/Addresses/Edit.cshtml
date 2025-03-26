@@ -6,7 +6,7 @@
 
 <h1>Edit</h1>
 
-<h4>Address</h4>
+<h4 class="createTitle">Address</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,39 +14,51 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Street" class="control-label"></label>
-                <input asp-for="Street" class="form-control" />
+                <label asp-for="Street" class="label-input"></label>
+                <input asp-for="Street" class="form-control" placeholder="Enter a Street"
+                       data-informer="Enter a valid Street"
+                       data-role="materialinput" data-cls-line="bg-custom"
+                       data-cls-informer="fg-custom" />
                 <span asp-validation-for="Street" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Number" class="control-label"></label>
-                <input asp-for="Number" class="form-control" />
+                <label asp-for="Number" class="label-input"></label>
+                <input asp-for="Number" class="form-control" placeholder="Enter Number"
+                       data-informer="Enter a valid Number"
+                       data-role="materialinput" data-cls-line="bg-custom"
+                       data-cls-informer="fg-custom" />
                 <span asp-validation-for="Number" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Code" class="control-label"></label>
-                <input asp-for="Code" class="form-control" />
+                <label asp-for="Code" class="label-input"></label>
+                <input asp-for="Code" class="form-control" placeholder="Enter a Code"
+                       data-informer="Enter a valid Code"
+                       data-role="materialinput" data-cls-line="bg-custom"
+                       data-cls-informer="fg-custom" />
                 <span asp-validation-for="Code" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
+                <label asp-for="City" class="label-input"></label>
+                <input asp-for="City" class="form-control" placeholder="Enter a City"
+                       data-informer="Enter a valid City"
+                       data-role="materialinput" data-cls-line="bg-custom"
+                       data-cls-informer="fg-custom" />
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" />
+                <label asp-for="Country" class="label-input"></label>
+                <input asp-for="Country" class="form-control" placeholder="Enter a Country"
+                       data-informer="Enter a valid Country"
+                       data-role="materialinput" data-cls-line="bg-custom"
+                       data-cls-informer="fg-custom" />
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+                <input type="submit" value="Save" class="button bg-custom2 fg-white" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
