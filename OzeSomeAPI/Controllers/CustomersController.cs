@@ -60,18 +60,26 @@ namespace OzeSomeAPI.Controllers
 
         // POST: api/Customers
         [HttpPost]
-        public async Task<ActionResult<CustomerDto>> PostCustomer(CustomerDto customerDto)
+        public async Task<ActionResult<CustomerDto>> PostCustomer(NewCustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var customerDtoCreated = await _customerService.CreateAsync(customerDto);
+            var customer = new CustomerDto
+            {
+                FirstName = customerDto.FirstName,
+                LastName = customerDto.LastName,
+                PhoneNumber = customerDto.PhoneNumber,
+                Email = customerDto.Email,
+                AddressId = customerDto.AddressId,
+            };
+            var customerDtoCreated = await _customerService.CreateAsync(customer);
             if (customerDtoCreated == null)
             {
                 return BadRequest("Nie udało się utworzyć klienta");
             }
-            return CreatedAtAction("GetCustomer", new { id = customerDtoCreated.Id }, customerDtoCreated);
+            return CreatedAtAction("GetCustomer", new { id = customerDtoCreated.Id }, customerDto);
         }
 
         // DELETE: api/Customers/5

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OzeSome.Data.Models.Dtos;
+using OZEsome.Helpers;
 using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
@@ -62,18 +63,24 @@ namespace OzeSomeAPI.Controllers
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ProductDto>> PostProduct(ProductDto productDto)
+        public async Task<ActionResult<ProductDto>> PostProduct(NewProductDto productDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var productDtoCreated = await _productService.CreateAsync(productDto);
+            var product = new ProductDto
+            {
+                CategoryId = productDto.CategoryId,
+                ProductName = productDto.ProductName,
+                Price = productDto.Price,
+            };
+            var productDtoCreated = await _productService.CreateAsync(product);
             if(productDtoCreated == null)
             {
                 return BadRequest("Nie udało sie utworzyć produktu");
             }
-            return CreatedAtAction("GetProduct", new { id = productDtoCreated.Id }, productDtoCreated);
+            return CreatedAtAction("GetProduct", new { id = productDtoCreated.Id }, productDto);
         }
 
         // DELETE: api/Products/5
