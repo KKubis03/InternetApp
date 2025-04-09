@@ -17,6 +17,8 @@ namespace OzeSomeAPI.Services
             var orderDetail = _mapper.Map<OrderDetail>(dto);
             orderDetail.CreationDateTime = DateTime.UtcNow;
             orderDetail.IsActive = true;
+            orderDetail.Quantity = dto.Quantity;
+            orderDetail.TotalAmount = dto.ProductPrice * orderDetail.Quantity;
             await _context.OrderDetails.AddAsync(orderDetail);
             await _context.SaveChangesAsync();
             return _mapper.Map<OrderDetailsDto>(orderDetail);

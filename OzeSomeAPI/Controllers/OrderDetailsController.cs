@@ -65,18 +65,25 @@ namespace OzeSomeAPI.Controllers
         // POST: api/OrderDetails
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<OrderDetailsDto>> PostOrderDetail(OrderDetailsDto orderDetail)
+        public async Task<ActionResult<OrderDetailsDto>> PostOrderDetail(NewOrderDetailDto orderDetail)
         {
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var createdOrderDetail = await _orderDetailsService.CreateAsync(orderDetail);
+            var detail = new OrderDetailsDto
+            {
+                OrderId = orderDetail.OrderId,
+                ProductId = orderDetail.ProductId,
+                CustomerId = orderDetail.CustomerId,
+                Quantity = orderDetail.Quantity,
+            };
+            var createdOrderDetail = await _orderDetailsService.CreateAsync(detail);
             if (createdOrderDetail == null)
             {
                 return StatusCode(500, "Error creating order detail");
             }
-            return CreatedAtAction("GetOrderDetail", new { id = createdOrderDetail.Id }, createdOrderDetail);
+            return CreatedAtAction("GetOrderDetail", new { id = createdOrderDetail.Id }, orderDetail);
         }
 
         // DELETE: api/OrderDetails/5

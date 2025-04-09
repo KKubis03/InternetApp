@@ -10,14 +10,15 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" data-role="validator" data-interactive-check="true">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Street" class="label-input"></label>
                 <input asp-for="Street" class="form-control" placeholder="Enter Street"
                        data-informer="Enter a valid Street"
                        data-role="materialinput" data-cls-line="bg-custom"
-                       data-cls-informer="fg-custom" />
+                       data-cls-informer="fg-custom" 
+                       data-validate="required"/>
                 <span asp-validation-for="Street" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -25,7 +26,8 @@
                 <input asp-for="Number" class="form-control" placeholder="Enter Number"
                        data-informer="Enter a valid Number"
                        data-role="materialinput" data-cls-line="bg-custom"
-                       data-cls-informer="fg-custom" />
+                       data-cls-informer="fg-custom" 
+                       data-validate="required number" />
                 <span asp-validation-for="Number" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,7 +35,8 @@
                 <input asp-for="Code" class="form-control" placeholder="Enter a Code"
                        data-informer="Enter a valid Code"
                        data-role="materialinput" data-cls-line="bg-custom"
-                       data-cls-informer="fg-custom" />
+                       data-cls-informer="fg-custom" 
+                       data-validate="required" />
                 <span asp-validation-for="Code" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -41,7 +44,8 @@
                 <input asp-for="City" class="form-control" placeholder="Enter a City"
                        data-informer="Enter a valid City"
                        data-role="materialinput" data-cls-line="bg-custom"
-                       data-cls-informer="fg-custom" />
+                       data-cls-informer="fg-custom" 
+                       data-validate="required" />
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -49,7 +53,8 @@
                 <input asp-for="Country" class="form-control" placeholder="Enter a Country"
                        data-informer="Enter a valid Country"
                        data-role="materialinput" data-cls-line="bg-custom"
-                       data-cls-informer="fg-custom" />
+                       data-cls-informer="fg-custom" 
+                       data-validate="required" />
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
             <div class="form-group">

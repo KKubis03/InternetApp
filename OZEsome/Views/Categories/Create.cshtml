@@ -9,14 +9,14 @@
 <hr />
 <div class="row">
 	<div class="col-md-4">
-		<form asp-action="Create">
+		<form asp-action="Create" data-role="validator">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="form-group">
 				<label asp-for="CategoryName" class="label-input"></label>
 				<input asp-for="CategoryName" class="form-control" placeholder="Enter a Category name"
 					   data-informer="Enter a valid Category name"
 					   data-role="materialinput" data-cls-line="bg-custom"
-					   data-cls-informer="fg-custom" />
+					   data-cls-informer="fg-custom" data-validate="required digits" />
 				<span asp-validation-for="CategoryName" class="text-danger"></span>
 			</div>
 			<div class="form-group">

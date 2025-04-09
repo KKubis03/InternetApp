@@ -68,6 +68,7 @@ namespace OzeSomeAPI
                 .ForMember(dest => dest.CustomerLastName, opt => opt.MapFrom(src => src.Customer.LastName))
                 .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.ProductName))
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Product.Category.CategoryName))
+                .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
                 .ForMember(dest => dest.ProductPrice, opt => opt.MapFrom(src => src.Product.Price));
             CreateMap<OrderDetailsDto, OrderDetail>();
             // Task Mapping

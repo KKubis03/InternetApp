@@ -55,12 +55,12 @@ namespace OZEsome.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
             //ViewBag.Customers = new SelectList(await _client.CustomersAllAsync(), "Id", "FirstName");
-            ViewBag.Customers = new SelectList((await _client.CustomersAllAsync())
-                .Select(c => new { c.Id, FullName = c.FirstName + " " + c.LastName }),"Id","FullName");
             MeetingDto meeting = new MeetingDto();
             try
             {
                 meeting = await _client.MeetingsGETAsync(id);
+                ViewBag.Customers = new SelectList((await _client.CustomersAllAsync())
+                    .Select(c => new { c.Id, FullName = c.FirstName + " " + c.LastName }),"Id","FullName",id);
             }
             catch (Exception ex)
             {
