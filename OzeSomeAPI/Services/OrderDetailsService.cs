@@ -18,7 +18,8 @@ namespace OzeSomeAPI.Services
             orderDetail.CreationDateTime = DateTime.UtcNow;
             orderDetail.IsActive = true;
             orderDetail.Quantity = dto.Quantity;
-            orderDetail.TotalAmount = dto.ProductPrice * orderDetail.Quantity;
+            var price = await _context.Products.Where(o => o.Id == dto.ProductId).Select(o => o.Price).FirstOrDefaultAsync();
+            orderDetail.TotalAmount = price * orderDetail.Quantity;
             await _context.OrderDetails.AddAsync(orderDetail);
             await _context.SaveChangesAsync();
             return _mapper.Map<OrderDetailsDto>(orderDetail);
