@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CustomerDto>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div class="container">
+	<div class="grid">
+		<p class="m-2">
+			<a class="button bg-custom2 fg-white" asp-action="Create">Create New</a>
+		</p>
+		<div class="row">
+			@foreach (var item in Model)
+			{
+				<div class="cell-md-3">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="text-medium m-0 fg-custom">
+								@Html.DisplayFor(modelItem => item.FirstName)
+								@Html.DisplayFor(modelItem => item.LastName)
+							</h5>
+						</div>
+						<div class="card-content p-5">
+							@Html.DisplayFor(modelItem => item.Email) <br />
+							<strong>@Html.DisplayFor(modelItem => item.PhoneNumber)</strong>
+
+						</div>
+						<div class="card-footer">
+							<a asp-action="Edit" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_edit.png"></img></a>
+							<a asp-action="Details" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_details.png"></img></a>
+							<a asp-action="Delete" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_delete.png"></img></a>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>

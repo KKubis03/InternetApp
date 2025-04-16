@@ -48,7 +48,7 @@ namespace OZEsome
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Customer}/{action=Index}/{id?}");
+                pattern: "{controller=Customers}/{action=Index}/{id?}");
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Addresses}/{action=Index}/{id?}");

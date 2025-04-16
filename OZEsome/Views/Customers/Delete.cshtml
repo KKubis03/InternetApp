@@ -1,0 +1,44 @@
+﻿@model CustomerDto
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4 class="createTitle">Customer</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Name & Surname
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            Address
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Street)  @Html.DisplayFor(model => model.Number)  @Html.DisplayFor(model => model.Code)  @Html.DisplayFor(model => model.City)  @Html.DisplayFor(model => model.Country)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <a class="button bg-custom" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+        <input type="submit" value="Delete" class="button bg-custom bg-customDelete fg-white" />
+    </form>
+</div>

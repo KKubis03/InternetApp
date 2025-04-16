@@ -1345,7 +1345,7 @@ namespace OZEsome
 
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<CustomerDto> CustomersPOSTAsync(CustomerDto body)
+        public virtual System.Threading.Tasks.Task<CustomerDto> CustomersPOSTAsync(NewCustomerDto body)
         {
             return CustomersPOSTAsync(body, System.Threading.CancellationToken.None);
         }
@@ -1353,7 +1353,7 @@ namespace OZEsome
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<CustomerDto> CustomersPOSTAsync(CustomerDto body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<CustomerDto> CustomersPOSTAsync(NewCustomerDto body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
