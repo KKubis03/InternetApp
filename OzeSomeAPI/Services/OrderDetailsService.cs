@@ -47,7 +47,7 @@ namespace OzeSomeAPI.Services
 
         public override async Task<OrderDetailsDto> GetByIdAsync(Guid id)
         {
-            var orderDetail = await _context.OrderDetails.Include(o => o.Order).Include(o => o.Product).Include(o => o.Customer).FirstOrDefaultAsync(o => o.Id == id && o.IsActive == true);
+            var orderDetail = await _context.OrderDetails.Include(o => o.Order).Include(o => o.Product).ThenInclude(o => o.Category).Include(o => o.Customer).FirstOrDefaultAsync(o => o.Id == id && o.IsActive == true);
             return _mapper.Map<OrderDetailsDto>(orderDetail);
         }
 
@@ -58,6 +58,9 @@ namespace OzeSomeAPI.Services
             {
                 _mapper.Map(dto, orderDetail);
                 orderDetail.EditDateTime = DateTime.UtcNow;
+                orderDetail.Quantity = dto.Quantity;
+                var price = await _context.Products.Where(o => o.Id == dto.ProductId).Select(o => o.Price).FirstOrDefaultAsync();
+                orderDetail.TotalAmount = price * orderDetail.Quantity;
                 await _context.SaveChangesAsync();
             }
             return orderDetail;

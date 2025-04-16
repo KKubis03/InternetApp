@@ -1,42 +1,44 @@
-﻿@model IEnumerable<OrderDto>
+﻿@model IEnumerable<OrderDetailsDto>
 
 @{
 	ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
-
-<p>
-	<a class="button bg-custom2 fg-white" asp-action="Create">Create New</a>
-</p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.OrderDate)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.OrderStatus)
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.OrderDate)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.OrderStatus)
-				</td>
-				<td>
-					<a asp-action="Edit" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_edit.png"></img></a>
-					<a asp-action="Details" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_details.png"></img></a>
-					<a asp-action="Delete" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_delete.png"></img></a>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+<div class="container">
+	<div class="grid">
+		<p class="m-2">
+			<a class="button bg-custom2 fg-white" asp-action="Create">Create New</a>
+			<a class="button bg-custom3 fg-white" asp-action="CreateDetails">Add Details</a>
+		</p>
+		<div class="row">
+			@foreach (var item in Model)
+			{
+				<div class="cell-md-3">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="text-medium m-0 fg-custom">
+								@Html.DisplayFor(modelItem => item.OrderStatus)
+							</h5>
+						</div>
+						<div class="card-content p-5">
+							@Html.DisplayFor(modelItem => item.OrderId) <br />
+							<div> Customer: <strong>@Html.DisplayFor(modelItem => item.CustomerFirstName) @Html.DisplayFor(modelItem => item.CustomerLastName)</strong></div>
+							<div>
+								Product: <strong>@Html.DisplayFor(modelItem => item.ProductName) </strong>
+							</div>
+							<h5 class="text-medium mt-3 fg-custom">
+								@Html.DisplayFor(modelItem => item.TotalAmount) PLN
+							</h5>
+						</div>
+						<div class="card-footer">
+							<a asp-action="Edit" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_edit.png"></img></a>
+							<a asp-action="Details" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_details.png"></img></a>
+							<a asp-action="Delete" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_delete.png"></img></a>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>

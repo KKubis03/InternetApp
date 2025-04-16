@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="OpenAPIs\swagger.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Resources\Images\OZELOGO.png" />
   </ItemGroup>
 
@@ -18,10 +14,6 @@
     <Content Include="Resources\Images\OZELOGO.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="OpenAPIs\swagger.json" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿@model OrderDto
+﻿@model OrderDetailsDto
 
 @{
 	ViewData["Title"] = "Delete";
@@ -10,20 +10,44 @@
 <div>
 	<h4 class="createTitle">Order</h4>
 	<hr />
-	<dl class="row">
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.OrderDate)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.OrderDate)
-		</dd>
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.OrderStatus)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.OrderStatus)
-		</dd>
-	</dl>
+	<div class="container">
+		<div class="h4">
+			Order
+		</div>
+		<div>
+			<strong>Date: </strong> @Html.DisplayFor(model => model.OrderDate)
+		</div>
+		<div>
+			<strong>Status: </strong> @Html.DisplayFor(model => model.OrderStatus)
+		</div>
+		<div>
+			<strong>Total: </strong> @Html.DisplayFor(model => model.TotalAmount) PLN
+		</div>
+		<div class="h4">
+			Customer
+		</div>
+		<div>
+			<strong>Name: </strong> @Html.DisplayFor(model => model.CustomerFirstName)
+		</div>
+		<div>
+			<strong>Surname: </strong> @Html.DisplayFor(model => model.CustomerLastName)
+		</div>
+		<div class="h4">
+			Product
+		</div>
+		<div>
+			<strong>Name: </strong> @Html.DisplayFor(model => model.ProductName)
+		</div>
+		<div>
+			<strong>Category: </strong> @Html.DisplayFor(model => model.CategoryName)
+		</div>
+		<div>
+			<strong>Price: </strong> @Html.DisplayFor(model => model.ProductPrice)
+		</div>
+		<div>
+			<strong>Quantity: </strong> @Html.DisplayFor(model => model.Quantity)
+		</div>
+	</div>
 
 	<form asp-action="Delete">
 		<input type="hidden" asp-for="Id" />

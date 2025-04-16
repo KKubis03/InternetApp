@@ -28,7 +28,6 @@ namespace OZEsome.Controllers
         // GET: Meetings/Create
         public async Task<IActionResult> Create()
         {
-            //ViewBag.Customers = new SelectList(await _client.CustomersAllAsync(), "Id", "FirstName");
             ViewBag.Customers = new SelectList((await _client.CustomersAllAsync())
                 .Select(c => new { c.Id, FullName = c.FirstName + " " + c.LastName }), "Id", "FullName");
             return View();
@@ -54,7 +53,6 @@ namespace OZEsome.Controllers
         // GET: Meetings/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            //ViewBag.Customers = new SelectList(await _client.CustomersAllAsync(), "Id", "FirstName");
             MeetingDto meeting = new MeetingDto();
             try
             {

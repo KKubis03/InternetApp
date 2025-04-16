@@ -1,15 +1,14 @@
-﻿@model OrderDetailsDto
-
+﻿@using OzeSome.Data.Models.Dtos
+@model NewOrderDetailDto
 @{
-    ViewData["Title"] = "Edit";
+	ViewData["Title"] = "CreateDetails";
 }
+<h1>CreateDetails</h1>
 
-<h1>Edit</h1>
-
-<h4 class="createTitle">OrderDetail</h4>
+<h4 class="createTitle">OrderDetails</h4>
 <hr />
 <div class="container">
-	<form asp-action="Edit">
+	<form asp-action="CreateDetails">
 		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 		<div class="form-group">
 			<label asp-for="OrderId" class="label-input">Order</label>
@@ -36,11 +35,7 @@
 		</div>
 		<div class="form-group">
 			<a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
-			<input type="submit" value="Save" class="button bg-custom2 fg-white" />
+			<input type="submit" value="CreateDetails" class="button bg-custom2 fg-white" />
 		</div>
 	</form>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
