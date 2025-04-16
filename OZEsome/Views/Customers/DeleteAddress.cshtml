@@ -1,11 +1,12 @@
 ﻿@model AddressDto
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
 }
 
-<h1>Details</h1>
+<h1>Delete</h1>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4 class="createTitle">Address</h4>
     <hr />
@@ -41,8 +42,10 @@
             @Html.DisplayFor(model => model.Country)
         </dd>
     </dl>
-</div>
-<div>
-    <a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
-    <a class="button bg-customEdit fg-white" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    
+    <form asp-action="DeleteAddress">
+        <input type="hidden" asp-for="Id" />
+        <a class="button bg-custom" asp-action="Addresses"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+        <input type="submit" value="Delete" class="button bg-custom bg-customDelete fg-white" />
+    </form>
 </div>
