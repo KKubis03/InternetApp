@@ -15,7 +15,13 @@ namespace OzeSomeAPI.Controllers
         {
             _productService = productService;
         }
-
+        // GET: api/Products/selectList
+        [HttpGet("selectList")]
+        public async Task<ActionResult<IEnumerable<SelectDto>>> GetSelectList()
+        {
+            var selectList = await _productService.GetSelectList();
+            return Ok(selectList);
+        }
         // GET: api/Products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()

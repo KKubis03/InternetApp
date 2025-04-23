@@ -15,6 +15,13 @@ namespace OzeSomeAPI.Controllers
         {
             _addressService = addressService;
         }
+        // GET: api/Addresses/selectList
+        [HttpGet("selectList")]
+        public async Task<ActionResult<IEnumerable<SelectDto>>> GetSelectList()
+        {
+            var selectList = await _addressService.GetSelectList();
+            return Ok(selectList);
+        }
 
         // GET: api/Addresses
         [HttpGet]

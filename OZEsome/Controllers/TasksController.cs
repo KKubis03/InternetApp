@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OzeSome.Data.Models.Dtos;
 
 namespace OZEsome.Controllers
 {

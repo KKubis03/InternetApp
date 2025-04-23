@@ -66,5 +66,17 @@ namespace OzeSomeAPI.Services
             }
             return product;
         }
+        public async Task<IEnumerable<SelectDto>> GetSelectList()
+        {
+            var products = await _context.Products.Include(p => p.Category)
+                .Where(p => p.IsActive)
+                .Select(p => new SelectDto
+                {
+                    Id = p.Id,
+                    DisplayName = $"{p.ProductName} ({p.Category.CategoryName})"
+                })
+                .ToListAsync();
+            return products;
+        }
     }
 }

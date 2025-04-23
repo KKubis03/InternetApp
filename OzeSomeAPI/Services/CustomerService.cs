@@ -64,5 +64,17 @@ namespace OzeSomeAPI.Services
         {
             return _context.Customers.Any(e => e.Id == id);
         }
+        public async Task<IEnumerable<SelectDto>> GetSelectList()
+        {
+            var customers = await _context.Customers
+                .Where(c => c.IsActive)
+                .Select(c => new SelectDto
+                {
+                    Id = c.Id,
+                    DisplayName = $"{c.FirstName} {c.LastName}"
+                })
+                .ToListAsync();
+            return customers;
+        }
     }
 }

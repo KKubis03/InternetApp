@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OzeSome.Data.Models.Dtos;
 using OzeSome.Data.Models.Dtos.New;
 using OzeSomeAPI.Services;

@@ -60,5 +60,17 @@ namespace OzeSomeAPI.Services
             }
             return category;
         }
+        public async Task<IEnumerable<SelectDto>> GetSelectList()
+        {
+            var categories = await _context.Categories
+                .Where(c => c.IsActive)
+                .Select(c => new SelectDto
+                {
+                    Id = c.Id,
+                    DisplayName = c.CategoryName
+                })
+                .ToListAsync();
+            return categories;
+        }
     }
 }
