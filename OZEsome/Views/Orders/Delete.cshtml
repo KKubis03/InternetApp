@@ -1,4 +1,4 @@
-﻿@model OrderDetailsDto
+﻿@model OrderDto
 
 @{
 	ViewData["Title"] = "Delete";
@@ -18,10 +18,8 @@
 			<strong>Date: </strong> @Html.DisplayFor(model => model.OrderDate)
 		</div>
 		<div>
-			<strong>Status: </strong> @Html.DisplayFor(model => model.OrderStatus)
 		</div>
 		<div>
-			<strong>Total: </strong> @Html.DisplayFor(model => model.TotalAmount) PLN
 		</div>
 		<div class="h4">
 			Customer
@@ -36,16 +34,12 @@
 			Product
 		</div>
 		<div>
-			<strong>Name: </strong> @Html.DisplayFor(model => model.ProductName)
 		</div>
 		<div>
-			<strong>Category: </strong> @Html.DisplayFor(model => model.CategoryName)
 		</div>
 		<div>
-			<strong>Price: </strong> @Html.DisplayFor(model => model.ProductPrice)
 		</div>
 		<div>
-			<strong>Quantity: </strong> @Html.DisplayFor(model => model.Quantity)
 		</div>
 	</div>
 

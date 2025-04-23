@@ -35,7 +35,7 @@ namespace OZEsome.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Content")] NoteDto note)
+        public async Task<IActionResult> Create([Bind("Id,Title,Content")] NewNoteDto note)
         {
             try
             {

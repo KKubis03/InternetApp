@@ -1,5 +1,6 @@
 ﻿    using Microsoft.AspNetCore.Mvc;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
@@ -62,7 +63,7 @@ namespace OzeSomeAPI.Controllers
         // POST: api/Addresses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<AddressDto>> PostAddress(AddressDto addressDto)
+        public async Task<ActionResult<AddressDto>> PostAddress(NewAddressDto addressDto)
         {
             if (!ModelState.IsValid)
             {

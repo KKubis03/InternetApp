@@ -50,17 +50,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddressDto"
+                "$ref": "#/components/schemas/NewAddressDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddressDto"
+                "$ref": "#/components/schemas/NewAddressDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddressDto"
+                "$ref": "#/components/schemas/NewAddressDto"
               }
             }
           }
@@ -235,17 +235,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoryDto"
+                "$ref": "#/components/schemas/NewCategoryDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoryDto"
+                "$ref": "#/components/schemas/NewCategoryDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoryDto"
+                "$ref": "#/components/schemas/NewCategoryDto"
               }
             }
           }
@@ -375,191 +375,6 @@
         }
       }
     },
-    "/api/Contracts": {
-      "get": {
-        "tags": [
-          "Contracts"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ContractDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ContractDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ContractDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Contracts"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContractDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContractDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContractDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContractDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContractDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContractDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Contracts/{id}": {
-      "get": {
-        "tags": [
-          "Contracts"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContractDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContractDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContractDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Contracts"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContractDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContractDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContractDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Contracts"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Customers": {
       "get": {
         "tags": [
@@ -605,17 +420,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomerDto"
+                "$ref": "#/components/schemas/NewCustomerDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomerDto"
+                "$ref": "#/components/schemas/NewCustomerDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomerDto"
+                "$ref": "#/components/schemas/NewCustomerDto"
               }
             }
           }
@@ -790,17 +605,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DocumentDto"
+                "$ref": "#/components/schemas/NewDocumentDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/DocumentDto"
+                "$ref": "#/components/schemas/NewDocumentDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/DocumentDto"
+                "$ref": "#/components/schemas/NewDocumentDto"
               }
             }
           }
@@ -975,17 +790,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MeetingDto"
+                "$ref": "#/components/schemas/NewMeetingDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MeetingDto"
+                "$ref": "#/components/schemas/NewMeetingDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MeetingDto"
+                "$ref": "#/components/schemas/NewMeetingDto"
               }
             }
           }
@@ -1160,17 +975,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NoteDto"
+                "$ref": "#/components/schemas/NewNoteDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/NoteDto"
+                "$ref": "#/components/schemas/NewNoteDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/NoteDto"
+                "$ref": "#/components/schemas/NewNoteDto"
               }
             }
           }
@@ -1300,10 +1115,20 @@
         }
       }
     },
-    "/api/OrderDetails": {
+    "/api/OrderItems": {
       "get": {
         "tags": [
-          "OrderDetails"
+          "OrderItems"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -1313,7 +1138,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/OrderDetailsDto"
+                    "$ref": "#/components/schemas/OrderItemDto"
                   }
                 }
               },
@@ -1321,7 +1146,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/OrderDetailsDto"
+                    "$ref": "#/components/schemas/OrderItemDto"
                   }
                 }
               },
@@ -1329,7 +1154,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/OrderDetailsDto"
+                    "$ref": "#/components/schemas/OrderItemDto"
                   }
                 }
               }
@@ -1339,23 +1164,23 @@
       },
       "post": {
         "tags": [
-          "OrderDetails"
+          "OrderItems"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderDetailsDto"
+                "$ref": "#/components/schemas/NewOrderItemDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderDetailsDto"
+                "$ref": "#/components/schemas/NewOrderItemDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderDetailsDto"
+                "$ref": "#/components/schemas/NewOrderItemDto"
               }
             }
           }
@@ -1366,17 +1191,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderDetailsDto"
+                  "$ref": "#/components/schemas/OrderDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderDetailsDto"
+                  "$ref": "#/components/schemas/OrderDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderDetailsDto"
+                  "$ref": "#/components/schemas/OrderDto"
                 }
               }
             }
@@ -1384,10 +1209,48 @@
         }
       }
     },
-    "/api/OrderDetails/{id}": {
+    "/api/OrderItems/all": {
       "get": {
         "tags": [
-          "OrderDetails"
+          "OrderItems"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderItemDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderItemDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderItemDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/OrderItems/{id}": {
+      "get": {
+        "tags": [
+          "OrderItems"
         ],
         "parameters": [
           {
@@ -1406,17 +1269,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderDetailsDto"
+                  "$ref": "#/components/schemas/OrderItemDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderDetailsDto"
+                  "$ref": "#/components/schemas/OrderItemDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderDetailsDto"
+                  "$ref": "#/components/schemas/OrderItemDto"
                 }
               }
             }
@@ -1425,7 +1288,7 @@
       },
       "put": {
         "tags": [
-          "OrderDetails"
+          "OrderItems"
         ],
         "parameters": [
           {
@@ -1442,17 +1305,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderDetailsDto"
+                "$ref": "#/components/schemas/OrderItemDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderDetailsDto"
+                "$ref": "#/components/schemas/OrderItemDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderDetailsDto"
+                "$ref": "#/components/schemas/OrderItemDto"
               }
             }
           }
@@ -1465,7 +1328,7 @@
       },
       "delete": {
         "tags": [
-          "OrderDetails"
+          "OrderItems"
         ],
         "parameters": [
           {
@@ -1530,17 +1393,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderDto"
+                "$ref": "#/components/schemas/NewOrderDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderDto"
+                "$ref": "#/components/schemas/NewOrderDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderDto"
+                "$ref": "#/components/schemas/NewOrderDto"
               }
             }
           }
@@ -1715,17 +1578,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProductDto"
+                "$ref": "#/components/schemas/NewProductDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProductDto"
+                "$ref": "#/components/schemas/NewProductDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ProductDto"
+                "$ref": "#/components/schemas/NewProductDto"
               }
             }
           }
@@ -1900,17 +1763,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskDto"
+                "$ref": "#/components/schemas/NewTaskDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskDto"
+                "$ref": "#/components/schemas/NewTaskDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskDto"
+                "$ref": "#/components/schemas/NewTaskDto"
               }
             }
           }
@@ -2039,191 +1902,6 @@
           }
         }
       }
-    },
-    "/api/Users": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Users/{id}": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
     }
   },
   "components": {
@@ -2266,45 +1944,6 @@
             "format": "uuid"
           },
           "categoryName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ContractDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "customerId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "orderId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "customerFirstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "customerLastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "orderDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "orderStatus": {
-            "type": "string",
-            "nullable": true
-          },
-          "contractStatus": {
             "type": "string",
             "nullable": true
           }
@@ -2406,9 +2045,197 @@
             "type": "string",
             "format": "date-time"
           },
-          "meetingStatus": {
+          "meetingStatusId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "meetingStatusName": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewAddressDto": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "number": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewCategoryDto": {
+        "type": "object",
+        "properties": {
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewCustomerDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewDocumentDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "filePath": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewMeetingDto": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "meetingDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewNoteDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewOrderDto": {
+        "type": "object",
+        "properties": {
+          "orderDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "orderStatusId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewOrderItemDto": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewProductDto": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productName": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewTaskDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "taskStatusId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2431,57 +2258,6 @@
         },
         "additionalProperties": false
       },
-      "OrderDetailsDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "orderId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "customerId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "productId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "orderDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "orderStatus": {
-            "type": "string",
-            "nullable": true
-          },
-          "customerFirstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "customerLastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "productName": {
-            "type": "string",
-            "nullable": true
-          },
-          "categoryName": {
-            "type": "string",
-            "nullable": true
-          },
-          "productPrice": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "additionalProperties": false
-      },
       "OrderDto": {
         "type": "object",
         "properties": {
@@ -2493,9 +2269,59 @@
             "type": "string",
             "format": "date-time"
           },
-          "orderStatus": {
+          "orderStatusId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "orderStatusName": {
             "type": "string",
             "nullable": true
+          },
+          "customerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "customerFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerLastName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderItemDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "orderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productCategoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "productName": {
+            "type": "string",
+            "nullable": true
+          },
+          "productPrice": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -2537,7 +2363,11 @@
             "type": "string",
             "nullable": true
           },
-          "taskStatus": {
+          "taskStatusId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "taskStatusName": {
             "type": "string",
             "nullable": true
           },
@@ -2548,40 +2378,6 @@
           "deadline": {
             "type": "string",
             "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "position": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "qrcode": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false

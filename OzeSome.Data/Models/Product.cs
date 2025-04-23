@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace OzeSome.Data.Models;
 
@@ -11,7 +8,7 @@ public partial class Product
     [Key]
     public Guid Id { get; set; }
 
-    [StringLength(100)]
+    [StringLength(200)]
     public string ProductName { get; set; } = null!;
 
     public Guid CategoryId { get; set; }
@@ -35,5 +32,5 @@ public partial class Product
     public virtual Category Category { get; set; } = null!;
 
     [InverseProperty("Product")]
-    public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+    public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 }

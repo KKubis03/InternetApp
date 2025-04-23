@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 
 namespace OZEsome.Controllers
 {
@@ -128,7 +128,7 @@ namespace OZEsome.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateAddress([Bind("Id,Street,Number,Code,City,Country")] AddressDto address)
+        public async Task<IActionResult> CreateAddress([Bind("Id,Street,Number,Code,City,Country")] NewAddressDto address)
         {
             try
             {

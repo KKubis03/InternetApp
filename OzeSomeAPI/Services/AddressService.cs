@@ -3,16 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using OzeSome.Data.Models;
 using OzeSome.Data.Models.Contexts;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 
 namespace OzeSomeAPI.Services
 {
-    public class AddressService : BaseService<Address, AddressDto>
+    public class AddressService : BaseService<Address, AddressDto, NewAddressDto>
     {
         public AddressService(DatabaseContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override async Task<AddressDto> CreateAsync(AddressDto dto)
+        public override async Task<AddressDto> CreateAsync(NewAddressDto dto)
         {
             var address = _mapper.Map<Address>(dto);
             address.CreationDateTime = DateTime.UtcNow;

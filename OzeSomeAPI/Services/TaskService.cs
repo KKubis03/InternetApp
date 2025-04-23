@@ -2,16 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using OzeSome.Data.Models.Contexts;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 
 namespace OzeSomeAPI.Services
 {
-    public class TaskService : BaseService<OzeSome.Data.Models.Task, TaskDto>
+    public class TaskService : BaseService<OzeSome.Data.Models.Task, TaskDto, NewTaskDto>
     {
         public TaskService(DatabaseContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override async Task<TaskDto> CreateAsync(TaskDto dto)
+        public override async Task<TaskDto> CreateAsync(NewTaskDto dto)
         {
             var task = _mapper.Map<OzeSome.Data.Models.Task>(dto);
             task.CreationDateTime = DateTime.UtcNow;
@@ -36,14 +37,14 @@ namespace OzeSomeAPI.Services
 
         public override async Task<IEnumerable<TaskDto>> GetAllAsync()
         {
-            var tasks = await _context.Tasks.Where(t => t.IsActive).ToListAsync();
+            var tasks = await _context.Tasks.Include(t => t.TaskStatus).Where(t => t.IsActive).ToListAsync();
             var tasksDto = _mapper.Map<IEnumerable<TaskDto>>(tasks);
             return tasksDto;
         }
 
         public override async Task<TaskDto> GetByIdAsync(Guid id)
         {
-            var task = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == id && t.IsActive == true);
+            var task = await _context.Tasks.Include(t => t.TaskStatus).FirstOrDefaultAsync(t => t.Id == id && t.IsActive == true);
             return _mapper.Map<TaskDto>(task);
         }
 

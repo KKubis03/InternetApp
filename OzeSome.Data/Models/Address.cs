@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace OzeSome.Data.Models;
 
@@ -11,7 +8,7 @@ public partial class Address
     [Key]
     public Guid Id { get; set; }
 
-    [StringLength(50)]
+    [StringLength(100)]
     public string Street { get; set; } = null!;
 
     [StringLength(50)]
@@ -20,10 +17,10 @@ public partial class Address
     [StringLength(50)]
     public string Code { get; set; } = null!;
 
-    [StringLength(50)]
+    [StringLength(100)]
     public string City { get; set; } = null!;
 
-    [StringLength(50)]
+    [StringLength(100)]
     public string Country { get; set; } = null!;
 
     [Column(TypeName = "datetime")]

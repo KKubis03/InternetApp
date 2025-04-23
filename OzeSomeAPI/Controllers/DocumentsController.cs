@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OzeSome.Data.Models;
-using OzeSome.Data.Models.Contexts;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
@@ -65,7 +63,7 @@ namespace OzeSomeAPI.Controllers
         // POST: api/Documents
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<DocumentDto>> PostDocument(DocumentDto document)
+        public async Task<ActionResult<DocumentDto>> PostDocument(NewDocumentDto document)
         {
             if (!ModelState.IsValid)
             {

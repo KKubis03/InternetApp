@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace OzeSome.Data.Models;
 
@@ -16,8 +13,7 @@ public partial class Meeting
     [Column(TypeName = "datetime")]
     public DateTime MeetingDate { get; set; }
 
-    [StringLength(100)]
-    public string MeetingStatus { get; set; } = null!;
+    public int MeetingStatusId { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime CreationDateTime { get; set; }
@@ -33,4 +29,8 @@ public partial class Meeting
     [ForeignKey("CustomerId")]
     [InverseProperty("Meetings")]
     public virtual Customer Customer { get; set; } = null!;
+
+    [ForeignKey("MeetingStatusId")]
+    [InverseProperty("Meetings")]
+    public virtual MeetingStatus MeetingStatus { get; set; } = null!;
 }

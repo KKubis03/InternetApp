@@ -1,8 +1,7 @@
-﻿namespace OzeSome.Data.Models.Dtos
+﻿namespace OzeSome.Data.Models.Dtos.New
 {
-    public class EditCustomerDto
+    public class NewCustomerDto
     {
-        public Guid Id { get; set; }
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public string PhoneNumber { get; set; } = null!;

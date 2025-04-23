@@ -3,15 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using OzeSome.Data.Models;
 using OzeSome.Data.Models.Contexts;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 
 namespace OzeSomeAPI.Services
 {
-    public class DocumentService : BaseService<Document, DocumentDto>
+    public class DocumentService : BaseService<Document, DocumentDto, NewDocumentDto>
     {
         public DocumentService(DatabaseContext context, IMapper mapper) : base(context, mapper)
         {
         }
-        public override async Task<DocumentDto> CreateAsync(DocumentDto dto)
+        public override async Task<DocumentDto> CreateAsync(NewDocumentDto dto)
         {
             var document = _mapper.Map<Document>(dto);
             document.CreationDateTime = DateTime.UtcNow;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
@@ -61,7 +62,7 @@ namespace OzeSomeAPI.Controllers
         // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<OrderDto>> PostOrder(OrderDto orderDto)
+        public async Task<ActionResult<OrderDto>> PostOrder(NewOrderDto orderDto)
         {
             if(!ModelState.IsValid)
             {
@@ -72,7 +73,7 @@ namespace OzeSomeAPI.Controllers
             {
                 return BadRequest("Nie udało się stworzyć zamówienia");
             }
-            return CreatedAtAction("GetOrder", new { id = orderDtoCreated.Id }, orderDtoCreated);
+            return CreatedAtAction("GetOrder", new { id = orderDtoCreated.Id }, orderDto);
         }
 
         // DELETE: api/Orders/5

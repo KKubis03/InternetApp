@@ -27,12 +27,10 @@ namespace OzeSomeAPI
             builder.Services.AddScoped<NoteService>();
             builder.Services.AddScoped<OrderService>();
             builder.Services.AddScoped<ProductService>();
-            builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<MeetingService>();
             builder.Services.AddScoped<DocumentService>();
-            builder.Services.AddScoped<ContractService>();
-            builder.Services.AddScoped<OrderDetailsService>();
             builder.Services.AddScoped<TaskService>();
+            builder.Services.AddScoped<OrderItemService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

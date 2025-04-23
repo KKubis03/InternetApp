@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OzeSome.Data.Models.Dtos;
-using OZEsome.Helpers;
+using OzeSome.Data.Models.Dtos.New;
 using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
@@ -69,13 +69,13 @@ namespace OzeSomeAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var product = new ProductDto
-            {
-                CategoryId = productDto.CategoryId,
-                ProductName = productDto.ProductName,
-                Price = productDto.Price,
-            };
-            var productDtoCreated = await _productService.CreateAsync(product);
+            //var product = new ProductDto
+            //{
+            //    CategoryId = productDto.CategoryId,
+            //    ProductName = productDto.ProductName,
+            //    Price = productDto.Price,
+            //};
+            var productDtoCreated = await _productService.CreateAsync(productDto);
             if(productDtoCreated == null)
             {
                 return BadRequest("Nie udało sie utworzyć produktu");

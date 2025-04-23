@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
@@ -66,15 +67,15 @@ namespace OzeSomeAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var customer = new CustomerDto
-            {
-                FirstName = customerDto.FirstName,
-                LastName = customerDto.LastName,
-                PhoneNumber = customerDto.PhoneNumber,
-                Email = customerDto.Email,
-                AddressId = customerDto.AddressId,
-            };
-            var customerDtoCreated = await _customerService.CreateAsync(customer);
+            //var customer = new CustomerDto
+            //{
+            //    FirstName = customerDto.FirstName,
+            //    LastName = customerDto.LastName,
+            //    PhoneNumber = customerDto.PhoneNumber,
+            //    Email = customerDto.Email,
+            //    AddressId = customerDto.AddressId,
+            //};
+            var customerDtoCreated = await _customerService.CreateAsync(customerDto);
             if (customerDtoCreated == null)
             {
                 return BadRequest("Nie udało się utworzyć klienta");

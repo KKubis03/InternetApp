@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using OzeSome.Data.Models.Dtos;
 
 namespace OZEsome.Controllers
 {
@@ -37,7 +38,7 @@ namespace OZEsome.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProductName,CategoryId,Price")] ProductDto product)
+        public async Task<IActionResult> Create([Bind("Id,ProductName,CategoryId,Price")] NewProductDto product)
         {
             try
             {

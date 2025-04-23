@@ -68,11 +68,11 @@
 								@Html.DisplayFor(modelItem => item.CustomerLastName)
 							</h5>
 						</div>
-						<div class="card-content p-5">
+						@* <div class="card-content p-5">
 							@Html.DisplayFor(modelItem => item.MeetingStatus) <br />
 							<strong>@Html.DisplayFor(modelItem => item.MeetingDate)</strong>
 
-						</div>
+						</div> *@
 						<div class="card-footer">
 							<a asp-action="Edit" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_edit.png"></img></a>
 							<a asp-action="Details" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_details.png"></img></a>

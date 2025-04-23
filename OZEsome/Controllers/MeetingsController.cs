@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using OzeSome.Data.Models.Dtos;
 
 namespace OZEsome.Controllers
 {
@@ -38,7 +39,7 @@ namespace OZEsome.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CustomerId,MeetingDate,MeetingStatus")] MeetingDto meeting)
+        public async Task<IActionResult> Create([Bind("Id,CustomerId,MeetingDate,MeetingStatus")] NewMeetingDto meeting)
         {
             try
             {

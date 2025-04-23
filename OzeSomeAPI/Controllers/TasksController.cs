@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
@@ -62,7 +63,7 @@ namespace OzeSomeAPI.Controllers
         // POST: api/Tasks
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TaskDto>> PostTask(TaskDto task)
+        public async Task<ActionResult<TaskDto>> PostTask(NewTaskDto task)
         {
             if(!ModelState.IsValid)
             {
@@ -73,7 +74,7 @@ namespace OzeSomeAPI.Controllers
             {
                 return StatusCode(500, "Error creating task");
             }
-            return CreatedAtAction("GetTask", new { id = createdTask.Id }, createdTask);
+            return CreatedAtAction("GetTask", new { id = createdTask.Id }, task);
         }
 
         // DELETE: api/Tasks/5

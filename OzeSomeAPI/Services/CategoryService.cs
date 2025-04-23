@@ -3,17 +3,18 @@ using Microsoft.EntityFrameworkCore;
 using OzeSome.Data.Models;
 using OzeSome.Data.Models.Contexts;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 
 namespace OzeSomeAPI.Services
 {
-    public class CategoryService : BaseService<Category, CategoryDto>
+    public class CategoryService : BaseService<Category, CategoryDto, NewCategoryDto>
 
     {
         public CategoryService(DatabaseContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override async Task<CategoryDto> CreateAsync(CategoryDto dto)
+        public override async Task<CategoryDto> CreateAsync(NewCategoryDto dto)
         {
             var category = _mapper.Map<Category>(dto);
             category.CreationDateTime = DateTime.UtcNow;

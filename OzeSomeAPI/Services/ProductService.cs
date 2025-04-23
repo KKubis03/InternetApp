@@ -1,24 +1,23 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using OzeSome.Data.Models;
 using OzeSome.Data.Models.Contexts;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 
 namespace OzeSomeAPI.Services
 {
-    public class ProductService : BaseService<Product, ProductDto>
+    public class ProductService : BaseService<Product, ProductDto, NewProductDto>
     {
         public ProductService(DatabaseContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override async Task<ProductDto> CreateAsync(ProductDto dto)
+        public override async Task<ProductDto> CreateAsync(NewProductDto dto)
         {
             //var product = _mapper.Map<Product>(dto);
             var product = new Product
             {
-                Id = dto.Id,
                 ProductName = dto.ProductName,
                 Price = dto.Price,
                 CategoryId = dto.CategoryId,

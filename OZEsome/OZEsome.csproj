@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Images\OZELOGO.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Resources\Images\OZELOGO.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -35,10 +31,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OzeSome.Data\OzeSome.Data.csproj" />
+    <Folder Include="Views\Addresses\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Addresses\" />
+    <OpenApiReference Include="OpenAPIs\swagger.json" ClassName="APIClient" Options="output:OpenAPIs\APIClient.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OzeSome.Data\OzeSome.Data.csproj" />
   </ItemGroup>
 </Project>

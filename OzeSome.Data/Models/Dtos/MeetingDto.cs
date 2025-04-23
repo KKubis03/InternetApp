@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace OzeSome.Data.Models.Dtos
+﻿namespace OzeSome.Data.Models.Dtos
 {
     public class MeetingDto
     {
@@ -10,6 +8,8 @@ namespace OzeSome.Data.Models.Dtos
         public string? CustomerFirstName { get; set; }
         public string? CustomerLastName { get; set; }
         public DateTime MeetingDate { get; set; }
-        public string MeetingStatus { get; set; } = null!;
+        // Status 
+        public int MeetingStatusId { get; set; }
+        public string? MeetingStatusName { get; set; }
     }
 }

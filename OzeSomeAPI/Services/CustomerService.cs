@@ -3,16 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using OzeSome.Data.Models;
 using OzeSome.Data.Models.Contexts;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 
 namespace OzeSomeAPI.Services
 {
-    public class CustomerService : BaseService<Customer, CustomerDto>
+    public class CustomerService : BaseService<Customer, CustomerDto, NewCustomerDto>
     {
         public CustomerService(DatabaseContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override async Task<CustomerDto> CreateAsync(CustomerDto dto)
+        public override async Task<CustomerDto> CreateAsync(NewCustomerDto dto)
         {
             var customer = _mapper.Map<Customer>(dto);
             customer.CreationDateTime = DateTime.UtcNow;

@@ -3,23 +3,24 @@ using Microsoft.EntityFrameworkCore;
 using OzeSome.Data.Models;
 using OzeSome.Data.Models.Contexts;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 
 namespace OzeSomeAPI.Services
 {
-    public class MeetingService : BaseService<Meeting, MeetingDto>
+    public class MeetingService : BaseService<Meeting, MeetingDto, NewMeetingDto>
     {
         public MeetingService(DatabaseContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override async Task<MeetingDto> CreateAsync(MeetingDto dto)
+        public override async Task<MeetingDto> CreateAsync(NewMeetingDto dto)
         {
             var meeting = new Meeting()
             {
                 Id = Guid.NewGuid(),
                 CustomerId = dto.CustomerId,
                 MeetingDate = dto.MeetingDate,
-                MeetingStatus = dto.MeetingStatus,
+                MeetingStatusId = 3,
                 CreationDateTime = DateTime.UtcNow,
                 IsActive = true
             };
@@ -43,14 +44,14 @@ namespace OzeSomeAPI.Services
 
         public override async Task<IEnumerable<MeetingDto>> GetAllAsync()
         {
-            var meetings = await _context.Meetings.Include(m => m.Customer).Where(m => m.IsActive).ToListAsync();
+            var meetings = await _context.Meetings.Include(m => m.Customer).Include(m => m.MeetingStatus).Where(m => m.IsActive).ToListAsync();
             var meetingsDto = _mapper.Map<IEnumerable<MeetingDto>>(meetings);
             return meetingsDto;
         }
 
         public override async Task<MeetingDto> GetByIdAsync(Guid id)
         {
-            var meeting = await _context.Meetings.Include(m => m.Customer).FirstOrDefaultAsync(m => m.Id == id && m.IsActive == true);
+            var meeting = await _context.Meetings.Include(m => m.Customer).Include(m => m.MeetingStatus).FirstOrDefaultAsync(m => m.Id == id && m.IsActive == true);
             return _mapper.Map<MeetingDto>(meeting);
         }
 

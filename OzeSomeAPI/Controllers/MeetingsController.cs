@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OzeSome.Data.Models.Dtos;
+using OzeSome.Data.Models.Dtos.New;
 using OzeSomeAPI.Services;
 
 namespace OzeSomeAPI.Controllers
@@ -62,7 +63,7 @@ namespace OzeSomeAPI.Controllers
         // POST: api/Meetings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<MeetingDto>> PostMeeting(MeetingDto meetingDto)
+        public async Task<ActionResult<MeetingDto>> PostMeeting(NewMeetingDto meetingDto)
         {
             if (!ModelState.IsValid)
             {
@@ -73,7 +74,7 @@ namespace OzeSomeAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            return CreatedAtAction("GetMeeting", new { id = meetingDtoCreated.Id }, meetingDtoCreated);
+            return CreatedAtAction("GetMeeting", new { id = meetingDtoCreated.Id }, meetingDto);
         }
 
         // DELETE: api/Meetings/5

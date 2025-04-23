@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OZEsome.Helpers
+﻿namespace OzeSome.Data.Models.Dtos.New
 {
     public class NewProductDto
     {

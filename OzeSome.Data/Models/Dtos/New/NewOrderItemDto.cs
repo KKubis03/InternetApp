@@ -1,9 +1,8 @@
-﻿namespace OzeSome.Data.Models.Dtos
+﻿namespace OzeSome.Data.Models.Dtos.New
 {
-    public class NewOrderDetailDto
+    public class NewOrderItemDto
     {
         public Guid OrderId { get; set; }
-        public Guid CustomerId { get; set; }
         public Guid ProductId { get; set; }
         public int Quantity { get; set; }
     }
