@@ -14,7 +14,13 @@ namespace OzeSomeAPI.Controllers
         {
             _orderService = orderService;
         }
-
+        // GET: api/Orders/statusses
+        [HttpGet("statusses")]
+        public async Task<ActionResult<IEnumerable<StatusDto>>> GetOrderStatusses()
+        {
+            var st = await _orderService.GetStatusses();
+            return Ok(st);
+        }
         // GET: api/Orders
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrders()

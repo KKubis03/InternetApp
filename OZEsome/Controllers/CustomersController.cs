@@ -29,8 +29,7 @@ namespace OZEsome.Controllers
         // GET: Customers/Create
         public async Task<IActionResult> Create()
         {
-            ViewBag.Addresses = new SelectList((await _client.AddressesAllAsync())
-                .Select(c => new { c.Id, Address = c.Street + " " + c.Number + " " + c.City}), "Id", "Address");
+            ViewBag.Addresses = new SelectList((await _client.SelectListAsync()), "Id", "DisplayName");
             return View();
         }
         // POST: Customers/Create

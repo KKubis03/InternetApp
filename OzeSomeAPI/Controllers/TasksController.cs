@@ -15,7 +15,13 @@ namespace OzeSomeAPI.Controllers
         {
             _taskService = taskService;
         }
-
+        // GET: api/Tasks/statusses
+        [HttpGet("statusses")]
+        public async Task<ActionResult<IEnumerable<StatusDto>>> GetTaskStatusses()
+        {
+            var st = await _taskService.GetStatusses();
+            return Ok(st);
+        }
         // GET: api/Tasks
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskDto>>> GetTasks()

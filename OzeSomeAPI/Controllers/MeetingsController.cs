@@ -15,7 +15,13 @@ namespace OzeSomeAPI.Controllers
         {
             _meetingService = meetingService;
         }
-
+        // GET: api/Meetings/statusses
+        [HttpGet("statusses")]
+        public async Task<ActionResult<IEnumerable<StatusDto>>> GetMeetingStatusses()
+        {
+            var st = await _meetingService.GetStatusses();
+            return Ok(st);
+        }
         // GET: api/Meetings
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MeetingDto>>> GetMeetings()

@@ -60,5 +60,17 @@ namespace OzeSomeAPI.Services
             }
             return order;
         }
+        public async Task<IEnumerable<StatusDto>> GetStatusses()
+        {
+            var statusses = await _context.OrderStatuses
+                .Where(a => a.IsActive)
+                .Select(a => new StatusDto
+                {
+                    Id = a.Id,
+                    StatusName = a.StatusName
+                })
+                .ToListAsync();
+            return statusses;
+        }
     }
 }

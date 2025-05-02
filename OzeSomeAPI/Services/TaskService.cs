@@ -17,6 +17,7 @@ namespace OzeSomeAPI.Services
             var task = _mapper.Map<OzeSome.Data.Models.Task>(dto);
             task.CreationDateTime = DateTime.UtcNow;
             task.IsActive = true;
+            task.TaskStatusId = 4;
             await _context.Tasks.AddAsync(task);
             await _context.SaveChangesAsync();
             return _mapper.Map<TaskDto>(task);
@@ -58,6 +59,18 @@ namespace OzeSomeAPI.Services
                 await _context.SaveChangesAsync();
             }
             return task;
+        }
+        public async Task<IEnumerable<StatusDto>> GetStatusses()
+        {
+            var statusses = await _context.TaskStatuses
+                .Where(a => a.IsActive)
+                .Select(a => new StatusDto
+                {
+                    Id = a.Id,
+                    StatusName = a.StatusName
+                })
+                .ToListAsync();
+            return statusses;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace OZEsome.Controllers
 {
@@ -25,7 +26,7 @@ namespace OZEsome.Controllers
         }
 
         // GET: Tasks/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -50,6 +51,7 @@ namespace OZEsome.Controllers
         // GET: Tasks/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
+            ViewBag.TaskStatusses = new SelectList((await _client.Statusses3Async()), "Id", "StatusName");
             TaskDto task = new TaskDto();
             try
             {
@@ -66,7 +68,7 @@ namespace OZEsome.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Title,TaskStatus,Content,Deadline")] TaskDto task)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Title,Content,Deadline,TaskStatusId,TaskStatusName")] TaskDto task)
         {
             try
             {

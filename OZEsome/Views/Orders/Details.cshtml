@@ -1,1 +1,55 @@
-﻿
+﻿@using OzeSome
+@model OrderWithItems
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4 class="createTitle">Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDate.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderStatusName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderStatusName)
+        </dd>
+        <dt class="col-sm-2">
+            Customer
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerFirstName) @Html.DisplayFor(model => model.CustomerLastName)
+        </dd>
+        <dt class="col-sm-2">
+            Products:
+        </dt>
+        @foreach (var item in Model.OrderItems)
+        {
+            <dd class="col-sm-10">
+                <a asp-action="EditOrderItem" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_edit.png"></img></a>
+                <a asp-action="DeleteOrderItem" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_delete.png"></img></a>
+                <strong class="fg-custom3">@item.ProductName</strong> @item.ProductPrice PLN - @item.Quantity x
+            </dd>
+        }
+        <dt class="col-sm-2">
+            Total
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Total) PLN
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+    <a class="button bg-customEdit fg-white" asp-action="Edit" asp-route-id="@Model?.OrderId">Edit</a>
+    <a class="button bg-custom3 fg-white" asp-action="NewItem" asp-route-id="@Model?.OrderId">New Item</a>
+</div>

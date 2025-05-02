@@ -28,7 +28,7 @@ namespace OZEsome.Controllers
         // GET: Products/Create
         public async Task<IActionResult> Create()
         {
-            ViewBag.Categories = new SelectList(await _client.CategoriesAllAsync(), "Id", "CategoryName");
+            ViewBag.Categories = new SelectList(await _client.SelectList2Async(), "Id", "DisplayName");
             return View();
         }
 
@@ -109,6 +109,94 @@ namespace OZEsome.Controllers
             {
             }
             return RedirectToAction(nameof(Index));
+        }
+        // GET: Categories
+        public async Task<IActionResult> Categories()
+        {
+            return View(await _client.CategoriesAllAsync());
+        }
+        // GET: Categories/Create
+        public IActionResult CategoriesCreate()
+        {
+            return View();
+        }
+
+        // POST: Categories/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CategoriesCreate([Bind("Id,CategoryName")] NewCategoryDto category)
+        {
+            try
+            {
+                await _client.CategoriesPOSTAsync(category);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction(nameof(Categories));
+        }
+
+        // GET: Categories/Edit/5
+        public async Task<IActionResult> CategoriesEdit(Guid id)
+        {
+            CategoryDto category = new CategoryDto();
+            try
+            {
+                category = await _client.CategoriesGETAsync(id);
+            }
+            catch (Exception ex)
+            {
+            }
+            return View(category);
+        }
+
+        // POST: Categories/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CategoriesEdit(Guid id, [Bind("Id,CategoryName")] CategoryDto category)
+        {
+            try
+            {
+                await _client.CategoriesPUTAsync(id, category);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction(nameof(Categories));
+        }
+
+        // GET: Categories/Delete/5
+        public async Task<IActionResult> CategoriesDelete(Guid id)
+        {
+            CategoryDto category = new CategoryDto();
+            try
+            {
+                category = await _client.CategoriesGETAsync(id);
+            }
+            catch (Exception ex)
+            {
+            }
+            return View(category);
+        }
+
+        // POST: Categories/Delete/5
+        [HttpPost, ActionName("DeleteCategory")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteCategoryConfirmed(Guid id)
+        {
+            try
+            {
+                await _client.CategoriesDELETEAsync(id);
+                RedirectToAction(nameof(Categories));
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction(nameof(Categories));
         }
     }
 }

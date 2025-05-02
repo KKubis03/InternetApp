@@ -1,0 +1,32 @@
+﻿@model OrderItemDto
+
+@{
+	ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+	<h4 class="createTitle">Order Item</h4>
+	<hr />
+	<div class="container">
+		<div class="h4">
+			Product
+		</div>
+		<div>
+			<strong>Name: </strong> @Html.DisplayFor(model => model.ProductName)
+		</div>
+		<div class="h4">
+			Quantity
+		</div>
+		<div>
+			 @Html.DisplayFor(model => model.Quantity)
+		</div>
+	</div>
+	<form asp-action="DeleteOrderItem">
+		<input type="hidden" asp-for="Id" />
+		<a class="button bg-custom" asp-action="Details/@Model.OrderId"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+		<input type="submit" value="Delete" class="button bg-custom bg-customDelete fg-white" />
+	</form>
+</div>

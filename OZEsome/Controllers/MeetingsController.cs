@@ -28,8 +28,7 @@ namespace OZEsome.Controllers
         // GET: Meetings/Create
         public async Task<IActionResult> Create()
         {
-            ViewBag.Customers = new SelectList((await _client.CustomersAllAsync())
-                .Select(c => new { c.Id, FullName = c.FirstName + " " + c.LastName }), "Id", "FullName");
+            ViewBag.Customers = new SelectList((await _client.SelectList3Async()), "Id", "DisplayName");
             return View();
         }
 
@@ -59,6 +58,7 @@ namespace OZEsome.Controllers
                 meeting = await _client.MeetingsGETAsync(id);
                 ViewBag.Customers = new SelectList((await _client.CustomersAllAsync())
                     .Select(c => new { c.Id, FullName = c.FirstName + " " + c.LastName }),"Id","FullName",id);
+                ViewBag.MeetingStatusses = new SelectList((await _client.StatussesAsync()), "Id", "StatusName");
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace OZEsome.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,CustomerId,MeetingDate,MeetingStatus,CustomerFirstName,CustomerLastName")] MeetingDto meeting)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,CustomerId,MeetingDate,MeetingStatusId,MeetingStatusName,CustomerFirstName,CustomerLastName")] MeetingDto meeting)
         {
             try
             {

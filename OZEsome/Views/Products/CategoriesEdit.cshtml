@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="CategoriesEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -22,7 +22,7 @@
                 <span asp-validation-for="CategoryName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+                <a class="button bg-custom fg-white" asp-action="Categories"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
                 <input type="submit" value="Save" class="button bg-custom2 fg-white" />
             </div>
         </form>

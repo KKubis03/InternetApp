@@ -66,5 +66,17 @@ namespace OzeSomeAPI.Services
             }
             return meeting;
         }
+        public async Task<IEnumerable<StatusDto>> GetStatusses()
+        {
+            var statusses = await _context.MeetingStatuses
+                .Where(a => a.IsActive)
+                .Select(a => new StatusDto
+                {
+                    Id = a.Id,
+                    StatusName = a.StatusName
+                })
+                .ToListAsync();
+            return statusses;
+        }
     }
 }

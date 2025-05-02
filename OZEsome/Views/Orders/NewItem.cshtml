@@ -1,0 +1,42 @@
+﻿@model NewOrderItemDto
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4 class="createTitle">New Product</h4>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="NewItem">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="OrderId" />
+			<div class="form-group">
+				<label asp-for="ProductId" class="label-input">Product</label>
+				<select data-role="select" asp-for="ProductId" class="form-control" asp-items="ViewBag.Products" data-cls-option="bg-white fg-custom"
+						data-cls-selected-item="bg-custom"></select>
+				<span asp-validation-for="ProductId" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Quantity" class="label-input"></label>
+				<input asp-for="Quantity" class="form-control" placeholder="Enter a Quantity"
+					   data-informer="Enter a valid Quantity"
+					   data-role="materialinput" data-cls-line="bg-custom"
+					   data-cls-informer="fg-custom" />
+				<span asp-validation-for="Quantity" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<a class="button bg-custom fg-white" asp-action="Details{OrderId}"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+				<input type="submit" value="Ok" class="button bg-custom2 fg-white" />
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

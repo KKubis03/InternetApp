@@ -18,9 +18,9 @@
             @Html.DisplayFor(model => model.CategoryName)
         </dd>
     </dl>
-    <form asp-action="Delete">
+    <form asp-action="DeleteCategory">
         <input type="hidden" asp-for="Id" />
-        <a class="button bg-custom" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+        <a class="button bg-custom" asp-action="Categories"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
         <input type="submit" value="Delete" class="button bg-custom bg-customDelete fg-white" /> 
     </form>
 </div>
