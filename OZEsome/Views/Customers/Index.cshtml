@@ -9,6 +9,12 @@
 		<p class="m-2">
 			<a class="button bg-custom2 fg-white" asp-action="Create">Create New</a>
 			<a class="button bg-custom3 fg-white" asp-action="Addresses">Addresses</a>
+			<form asp-action="Index" method="get" class="d-inline">
+				<input type="text" name="searchString" value="@Context.Request.Query["searchString"]" class="w-25" />
+				<button type="submit" class="button bg-custom fg-white">Search</button>
+			</form>
+			@* <input type="text" class="w-25"/>
+			<a class="button bg-custom fg-white" asp-action="Search">Search</a> *@
 		</p>
 		<div class="row">
 			@foreach (var item in Model)
@@ -28,9 +34,9 @@
 							<strong>@Html.DisplayFor(modelItem => item.PhoneNumber)</strong>
 						</div>
 						<div class="card-footer">
-							<a asp-action="Edit" asp-route-id="@item.Id"><img class="IndexIcon" src="/Resources\Icons\icon_edit.png"></a>
-							<a asp-action="Details" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_details.png"></a>
-							<a asp-action="Delete" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_delete.png"></a>
+							<a class="mr-3" asp-action="Edit" asp-route-id="@item.Id"><span class="mif-pencil"></span></a>
+							<a class="mr-3" asp-action="Details" asp-route-id="@item.Id"><span class="mif-info fg-orange"></span></a>
+							<a class="mr-3" asp-action="Delete" asp-route-id="@item.Id"><span class="mif-bin fg-red"></span></a>
 						</div>
 					</div>
 				</div>

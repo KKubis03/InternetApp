@@ -5,7 +5,7 @@
 }
 
 <p>
-	<a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+	<a class="button bg-custom fg-white" asp-action="Index"><span class="mif-chevron-left fg-white"></span></a>
 	<a class="button bg-custom2 fg-white" asp-action="CreateAddress">Create New</a>
 </p>
 <table class="table">
@@ -49,9 +49,9 @@
 					@Html.DisplayFor(modelItem => item.Country)
 				</td>
 				<td>
-					<a asp-action="EditAddress" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_edit.png"></img></a>
-					<a asp-action="AddressDetails" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_details.png"></img></a>
-					<a asp-action="DeleteAddress" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_delete.png"></img></a>
+					<a class="mr-3" asp-action="EditAddress" asp-route-id="@item.Id"><span class="mif-pencil"></span></a>
+					<a class="mr-3" asp-action="AddressDetails" asp-route-id="@item.Id"><span class="mif-info fg-orange"></span></a>
+					<a class="mr-3" asp-action="DeleteAddress" asp-route-id="@item.Id"><span class="mif-bin fg-red"></span></a>
 				</td>
 			</tr>
 		}

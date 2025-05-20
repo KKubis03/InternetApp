@@ -13,9 +13,16 @@ namespace OZEsome.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _client.ProductsAllAsync());
+            var products = await _client.ProductsAllAsync();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                products = products
+                    .Where(c => c.ProductName.ToLower().Contains(searchString.ToLower()))
+                    .ToList();
+            }
+            return View(products);
         }
 
         // GET: Products/Details/5
@@ -111,9 +118,16 @@ namespace OZEsome.Controllers
             return RedirectToAction(nameof(Index));
         }
         // GET: Categories
-        public async Task<IActionResult> Categories()
+        public async Task<IActionResult> Categories(string searchString)
         {
-            return View(await _client.CategoriesAllAsync());
+            var categories = await _client.CategoriesAllAsync();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                categories = categories
+                    .Where(c => c.CategoryName.ToLower().Contains(searchString.ToLower()))
+                    .ToList();
+            }
+            return View(categories);
         }
         // GET: Categories/Create
         public IActionResult CategoriesCreate()

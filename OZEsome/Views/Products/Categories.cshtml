@@ -6,8 +6,12 @@
 
 
 <p>
-	<a class="button bg-custom fg-white" asp-action="Index"><img class="IndexIcon" src="\Resources\Icons\icon_back.png"></img></a>
+	<a class="button bg-custom fg-white" asp-action="Index"><span class="mif-chevron-left fg-white"></span></a>
 	<a class="button bg-custom2 fg-white" asp-action="CategoriesCreate">Create New</a>
+	<form asp-action="Categories" method="get" class="d-inline">
+		<input type="text" name="searchString" value="@Context.Request.Query["searchString"]" class="w-25" />
+		<button type="submit" class="button bg-custom fg-white">Search</button>
+	</form>
 </p>
 <table class="table">
 	<thead>
@@ -26,8 +30,8 @@
 					@Html.DisplayFor(modelItem => item.CategoryName)
 				</td>
 				<td>
-					<a asp-action="CategoriesEdit" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_edit.png"></img></a>
-					<a asp-action="CategoriesDelete" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_delete.png"></img></a>
+					<a class="mr-3" asp-action="CategoriesEdit" asp-route-id="@item.Id"><span class="mif-pencil"></span></a>
+					<a class="mr-3" asp-action="CategoriesDelete" asp-route-id="@item.Id"><span class="mif-bin fg-red"></span></a>
 				</td>
 			</tr>
 		}

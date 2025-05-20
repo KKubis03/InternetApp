@@ -12,9 +12,16 @@ namespace OZEsome.Controllers
         }
 
         // GET: Categories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _client.CategoriesAllAsync());
+            var categories = await _client.CategoriesAllAsync();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                categories = categories
+                    .Where(c => c.CategoryName.ToLower().Contains(searchString.ToLower()))
+                    .ToList();
+            }
+            return View(categories);
         }
 
         // GET: Categories/Details/5

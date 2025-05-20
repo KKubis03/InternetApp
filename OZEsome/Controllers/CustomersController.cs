@@ -11,9 +11,16 @@ namespace OZEsome.Controllers
             _client = client;
         }
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _client.CustomersAllAsync());
+            var customers = await _client.CustomersAllAsync();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                customers = customers
+                    .Where(c => c.LastName.ToLower().Contains(searchString.ToLower()))
+                    .ToList();
+            }
+            return View(customers);
         }
         // GET: Addresses
         public async Task<IActionResult> Addresses()
