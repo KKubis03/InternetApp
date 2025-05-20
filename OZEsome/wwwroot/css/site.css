@@ -38,6 +38,7 @@ body {
     font-size: 20px;
     font-family: Arial;
     font-weight: bold;
+    margin: 2px;
 }
 input {
     padding: 10px;
@@ -112,6 +113,9 @@ a {
 }
 .IndexIcon {
     width: 20px;
+    height: 24px;
+    object-fit: contain;
+    display: inline-block;
 }
 .createTitle {
     font-size: 30px;

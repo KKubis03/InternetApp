@@ -6,14 +6,13 @@
 	<title>@ViewData["Title"] - OZEsome</title>
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/OZEsome.styles.css" asp-append-version="true" />
-	<link rel="stylesheet" href="https://cdn.metroui.org.ua/current/metro.css">
+	<link rel="stylesheet" href="~/css/metro.css">
 </head>
 <body>
-	<header>
-		<div data-role="appbar" data-expand-point="md" class="fg-white" style="background-color: #00ADB5">
-			<img src="\Resources\Images\OZELOGO.png" class="brand no-hover"</img>
+		<div data-role="app-bar" data-expand-point="md" class="fg-white" style="background-color: #00ADB5">
+			@* <img src="\Resources\Images\OZELOGO.png" class="brand"</img> *@
 			<ul class="app-bar-menu">
-				<li><a style="color: White; font-weight: bolder; font-family: Arial; text-shadow: 2px 2px 3px gray;" asp-controller="Home" asp-action="Index">Home</a></li>
+				<li><a style="color: White; font-weight: bolder; font-family: Arial; text-shadow: 2px 2px 3px gray;" class="app-bar-item" asp-controller="Home" asp-action="Index">Home</a></li>
 				<li><a style="color: White; font-weight: bolder; font-family: Arial; text-shadow: 2px 2px 3px gray;" asp-controller="Customers" asp-action="Index">Customers</a></li>
 				<li><a style="color: White; font-weight: bolder; font-family: Arial; text-shadow: 2px 2px 3px gray;" asp-controller="Documents" asp-action="Index">Documents</a></li>
 				<li><a style="color: White; font-weight: bolder; font-family: Arial; text-shadow: 2px 2px 3px gray;" asp-controller="Notes" asp-action="Index">Notes</a></li>
@@ -23,7 +22,6 @@
 				<li><a style="color: White; font-weight: bolder; font-family: Arial; text-shadow: 2px 2px 3px gray;" asp-controller="Products" asp-action="Index">Products</a></li>
 			</ul>
 		</div>
-	</header>
 	<div class="container" style="width: 100%;">
 		<main role="main">
 			@RenderBody()
@@ -36,6 +34,7 @@
 	</footer>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/js/metro.js" asp-append-version="true"></script>
 	<script src="https://cdn.metroui.org.ua/current/metro.js"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 </body>

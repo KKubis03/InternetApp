@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OzeSome.Data\OzeSome.Data.csproj" />
+    <ProjectReference Include="..\..\MobileApp\OzeSome.Data\OzeSome.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,8 +4,6 @@
 	ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
 <div class="container">
 	<div class="grid">
 		<p class="m-2">
@@ -23,15 +21,16 @@
 								@Html.DisplayFor(modelItem => item.LastName)
 							</h5>
 						</div>
-						<div class="card-content p-5">
-							@Html.DisplayFor(modelItem => item.Email) <br />
+						<div class="card-content">
+							@Html.DisplayFor(modelItem => item.Email)
+						</div>
+						<div class="card-content">
 							<strong>@Html.DisplayFor(modelItem => item.PhoneNumber)</strong>
-
 						</div>
 						<div class="card-footer">
-							<a asp-action="Edit" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_edit.png"></img></a>
-							<a asp-action="Details" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_details.png"></img></a>
-							<a asp-action="Delete" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_delete.png"></img></a>
+							<a asp-action="Edit" asp-route-id="@item.Id"><img class="IndexIcon" src="/Resources\Icons\icon_edit.png"></a>
+							<a asp-action="Details" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_details.png"></a>
+							<a asp-action="Delete" asp-route-id="@item.Id"><img class="IndexIcon" src="\Resources\Icons\icon_delete.png"></a>
 						</div>
 					</div>
 				</div>
